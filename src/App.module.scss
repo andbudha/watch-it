@@ -14,8 +14,8 @@
   .app_box {
     width: 1200px;
     min-height: 100vh;
-    padding: 10px;
-    background-color: $second_background_color;
+    padding: 10px 0;
+    // background-color: $second_background_color;
     @include flexBox(nowrap, column, space-between, center);
   }
 }
