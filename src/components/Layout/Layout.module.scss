@@ -7,6 +7,5 @@
   .outlet_main_box {
     width: 100%;
     padding: 10px 0;
-    @include flexBox(nowrap, column, space-between, center);
   }
 }
