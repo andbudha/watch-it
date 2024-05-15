@@ -1,0 +1,8 @@
+@import '../../assets/sass/mixins.scss';
+.movie_card_main_box {
+  margin: 10px;
+  height: 260px;
+  width: 200px;
+  border: 1px solid;
+  @include flexBox(nowrap, row, center, center);
+}
