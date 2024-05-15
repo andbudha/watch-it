@@ -9,7 +9,7 @@ export const GridMovies = ({ movies }: GridMoviesProps) => {
   const movieList = movies?.map((movie) => {
     return (
       <div key={movie.title}>
-        <MovieCard movie={movie} />
+        <MovieCard movie={movie} movies={movies} />
       </div>
     );
   });
