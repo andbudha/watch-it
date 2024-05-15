@@ -1,0 +1,6 @@
+@import '../../../../assets/sass/mixins.scss';
+.movies_main_box {
+  height: 100%;
+  width: 100%;
+  @include flexBox(nowrap, column, center, center);
+}
