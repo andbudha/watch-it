@@ -1,8 +1,27 @@
 @import '../../assets/sass/mixins.scss';
+@import '../../assets/sass/variables.scss';
+
 .movie_card_main_box {
   margin: 10px;
-  height: 260px;
-  width: 200px;
-  border: 1px solid;
+  height: 320px;
+  width: 210px;
+  cursor: pointer;
   @include flexBox(nowrap, row, center, center);
+
+  .movie_card_img {
+    height: 280px;
+    width: 180px;
+    box-shadow: $shadow_color 0px 2px 20px 0px,
+      rgba(0, 0, 0, 0.06) 0px 0px 0px 0px;
+    &:hover {
+      height: 290px;
+      width: 190px;
+      transform: scale(1) translateY(-10px);
+      transition: 0.3s;
+    }
+
+    &:not(:hover) {
+      transition: 0.3s;
+    }
+  }
 }

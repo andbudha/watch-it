@@ -14,7 +14,7 @@ export const Home = () => {
       'https://5b81e3264853b358.mokky.dev/mixedmovies'
     );
     if (response) {
-      setMovies(response.data.slice(0, 8));
+      setMovies(response.data.slice(0, 10));
     }
   };
 
@@ -23,7 +23,7 @@ export const Home = () => {
   }, []);
   return (
     <div className={styles.home_main_box}>
-      <GridMovies />{' '}
+      <GridMovies movies={movies} />{' '}
     </div>
   );
 };
