@@ -32,7 +32,7 @@ function App() {
             <Route index element={<Home movies={movies} />} />
             <Route index path="movies" element={<GridMovies />} />
             <Route
-              path="movies/movie/:id"
+              path="movies/movie/:movieID"
               element={<MovieDetails movies={movies} />}
             />
           </Route>
