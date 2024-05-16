@@ -40,7 +40,10 @@ export const MovieDetails = ({ movies }: MovieProps) => {
         </div>
         <div className={styles.cast_box}>
           <h3 className={styles.movie_details_header}>
-            Cast: <span className={styles.movie_details}>{castList}</span>
+            Cast:{' '}
+            <span className={styles.movie_details}>
+              {castList?.length ? castList : 'Unknown'}
+            </span>
           </h3>
         </div>
         <div className={styles.story_box}>

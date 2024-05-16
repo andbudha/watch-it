@@ -2,7 +2,7 @@
 @import '../../assets/sass/mixins.scss';
 
 .nav_main_box {
-  height: 80px;
+  height: 100px;
   width: 100%;
   padding: 16px;
   border-radius: 12px;
@@ -86,12 +86,15 @@
   }
   .links_box {
     height: 30px;
-    width: 200px;
+    width: 220px;
     @include flexBox(nowrap, row, space-between, center);
 
     .my_list_link_main_box,
+    .signin_button_box,
     .login_button_box,
     .logout_button_box {
+      border: 1px solid;
+      border-radius: 15px;
       width: 100px;
       height: 100%;
       text-decoration: none;
@@ -107,11 +110,16 @@
         font-weight: 500;
       }
       .list_icon,
+      .signin_icon,
       .login_icon,
       .logout_icon {
         height: 20px;
         width: 20px;
       }
+    }
+    .auth_box {
+      width: 200px;
+      @include flexBox(nowrap, row, center, center);
     }
   }
 }

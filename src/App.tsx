@@ -7,9 +7,10 @@ import { GridMovies } from './components/pages/Home/GridMovies/GridMovies';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Movies } from './assets/types/common_types';
+import { Login } from './components/pages/Login/Login';
 function App() {
   const [movies, setMovies] = useState<null | Movies>(null);
-  const [loggedIn, setLoggedIn] = useState<boolean>(true);
+  const [loggedIn, setLoggedIn] = useState<boolean>(false);
 
   console.log(movies);
 
@@ -39,6 +40,7 @@ function App() {
               path="movies/movie/:movieID"
               element={<MovieDetails movies={movies} />}
             />
+            <Route path="login" element={<Login />} />
           </Route>
         </Routes>
       </div>

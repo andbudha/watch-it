@@ -3,6 +3,8 @@ import styles from './Navbar.module.scss';
 import { CiViewList, CiLogin, CiSearch, CiLogout } from 'react-icons/ci';
 import { RiMovie2Line } from 'react-icons/ri';
 import { RxCross2 } from 'react-icons/rx';
+import { RiAccountBoxLine } from 'react-icons/ri';
+
 import { ChangeEvent, useState } from 'react';
 
 type NavbarProps = {
@@ -65,10 +67,16 @@ export const Navbar = ({ loggedIn, setLoggedIn }: NavbarProps) => {
           )}
         </NavLink>
         {!loggedIn ? (
-          <NavLink to={''} className={styles.login_button_box}>
-            <span className={styles.link_text}>login</span>
-            <CiLogin className={styles.login_icon} />
-          </NavLink>
+          <div className={styles.auth_box}>
+            <NavLink to={'login'} className={styles.login_button_box}>
+              <span className={styles.link_text}>login</span>
+              <CiLogin className={styles.login_icon} />
+            </NavLink>
+            <NavLink to={'login'} className={styles.signin_button_box}>
+              <span className={styles.link_text}>signin</span>
+              <RiAccountBoxLine className={styles.signin_icon} />
+            </NavLink>
+          </div>
         ) : (
           <div className={styles.logout_button_box} onClick={logOutHandler}>
             <span className={styles.link_text}>logout</span>
