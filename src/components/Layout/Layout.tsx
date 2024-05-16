@@ -3,11 +3,15 @@ import { Footer } from '../Footer/Footer';
 import { Navbar } from '../Navbar/Navbar';
 import styles from './Layout.module.scss';
 
-export const Layout = () => {
+type LayoutProps = {
+  loggedIn: boolean;
+  setLoggedIn: (loggedStatus: boolean) => void;
+};
+export const Layout = ({ loggedIn, setLoggedIn }: LayoutProps) => {
   return (
     <div className={styles.layout_main_box}>
       <div className={styles.navbar_main_box}>
-        <Navbar />
+        <Navbar loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
       </div>
       <div className={styles.outlet_main_box}>
         <Outlet />

@@ -1,21 +1,26 @@
 import { NavLink } from 'react-router-dom';
 import styles from './Navbar.module.scss';
-import { CiViewList, CiLogin, CiSearch } from 'react-icons/ci';
+import { CiViewList, CiLogin, CiSearch, CiLogout } from 'react-icons/ci';
 import { RiMovie2Line } from 'react-icons/ri';
 import { RxCross2 } from 'react-icons/rx';
 import { ChangeEvent, useState } from 'react';
 
-export const Navbar = () => {
+type NavbarProps = {
+  loggedIn: boolean;
+  setLoggedIn: (loggedStatus: boolean) => void;
+};
+export const Navbar = ({ loggedIn, setLoggedIn }: NavbarProps) => {
   const [searchInputValue, setSearchInputValue] = useState<string>('');
-
-  console.log(searchInputValue.trim());
 
   const getSearchInputValueHandler = (event: ChangeEvent<HTMLInputElement>) => {
     setSearchInputValue(event.currentTarget.value);
   };
-
   const emptySearchInputHandler = () => {
     setSearchInputValue('');
+  };
+
+  const logOutHandler = () => {
+    setLoggedIn(false);
   };
   return (
     <div className={styles.nav_main_box}>
@@ -50,14 +55,26 @@ export const Navbar = () => {
         </div>
       </div>
       <div className={styles.links_box}>
-        <NavLink to={''} className={styles.my_list_link_box}>
-          <span className={styles.link_text}>my list</span>
-          <CiViewList className={styles.list_icon} />
+        <NavLink to={''} className={styles.my_list_link_main_box}>
+          {loggedIn && (
+            <div className={styles.my_list_link_box}>
+              {' '}
+              <span className={styles.link_text}>my list</span>
+              <CiViewList className={styles.list_icon} />
+            </div>
+          )}
         </NavLink>
-        <NavLink to={''} className={styles.login_link_box}>
-          <span className={styles.link_text}>login</span>
-          <CiLogin className={styles.login_icon} />
-        </NavLink>
+        {!loggedIn ? (
+          <NavLink to={''} className={styles.login_button_box}>
+            <span className={styles.link_text}>login</span>
+            <CiLogin className={styles.login_icon} />
+          </NavLink>
+        ) : (
+          <div className={styles.logout_button_box} onClick={logOutHandler}>
+            <span className={styles.link_text}>logout</span>
+            <CiLogout className={styles.logout_icon} />
+          </div>
+        )}
       </div>
     </div>
   );

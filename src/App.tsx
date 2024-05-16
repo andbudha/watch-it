@@ -9,6 +9,7 @@ import axios from 'axios';
 import { Movies } from './assets/types/common_types';
 function App() {
   const [movies, setMovies] = useState<null | Movies>(null);
+  const [loggedIn, setLoggedIn] = useState<boolean>(true);
 
   console.log(movies);
 
@@ -23,12 +24,15 @@ function App() {
 
   useEffect(() => {
     fetchMovies();
-  }, []);
+  }, [loggedIn]);
   return (
     <div className={styles.app_main_box}>
       <div className={styles.app_box}>
         <Routes>
-          <Route path="/" element={<Layout />}>
+          <Route
+            path="/"
+            element={<Layout loggedIn={loggedIn} setLoggedIn={setLoggedIn} />}
+          >
             <Route index element={<Home movies={movies} />} />
             <Route index path="movies" element={<GridMovies />} />
             <Route

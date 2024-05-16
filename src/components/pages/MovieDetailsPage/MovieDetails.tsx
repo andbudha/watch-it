@@ -7,12 +7,10 @@ type MovieProps = {
 };
 export const MovieDetails = ({ movies }: MovieProps) => {
   const { movieID } = useParams();
-  console.log(movieID);
 
   const movie = movies?.find((movie) => movie.title === movieID);
   const castList = movie?.cast.splice(0, 5).join(', ');
   const genreList = movie?.genres.join(', ');
-  console.log(genreList);
 
   return (
     <div className={styles.movie_details_main_box}>
