@@ -8,10 +8,14 @@ import { ChangeEvent, useState } from 'react';
 export const Navbar = () => {
   const [searchInputValue, setSearchInputValue] = useState<string>('');
 
-  console.log(searchInputValue);
+  console.log(searchInputValue.trim());
 
   const getSearchInputValueHandler = (event: ChangeEvent<HTMLInputElement>) => {
     setSearchInputValue(event.currentTarget.value);
+  };
+
+  const emptySearchInputHandler = () => {
+    setSearchInputValue('');
   };
   return (
     <div className={styles.nav_main_box}>
@@ -36,7 +40,12 @@ export const Navbar = () => {
           />
           <div className={styles.remove_icon_box}>
             {' '}
-            <RxCross2 className={styles.remove_icon} />
+            {searchInputValue && (
+              <RxCross2
+                className={styles.remove_icon}
+                onClick={emptySearchInputHandler}
+              />
+            )}
           </div>
         </div>
       </div>
