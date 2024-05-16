@@ -3,8 +3,16 @@ import styles from './Navbar.module.scss';
 import { CiViewList, CiLogin, CiSearch } from 'react-icons/ci';
 import { RiMovie2Line } from 'react-icons/ri';
 import { RxCross2 } from 'react-icons/rx';
+import { ChangeEvent, useState } from 'react';
 
 export const Navbar = () => {
+  const [searchInputValue, setSearchInputValue] = useState<string>('');
+
+  console.log(searchInputValue);
+
+  const getSearchInputValueHandler = (event: ChangeEvent<HTMLInputElement>) => {
+    setSearchInputValue(event.currentTarget.value);
+  };
   return (
     <div className={styles.nav_main_box}>
       <NavLink to={'/'} className={styles.home_page_link_box}>
@@ -21,7 +29,11 @@ export const Navbar = () => {
             {' '}
             <CiSearch className={styles.search_icon} />
           </div>{' '}
-          <input className={styles.search_input} />
+          <input
+            value={searchInputValue}
+            className={styles.search_input}
+            onChange={getSearchInputValueHandler}
+          />
           <div className={styles.remove_icon_box}>
             {' '}
             <RxCross2 className={styles.remove_icon} />
