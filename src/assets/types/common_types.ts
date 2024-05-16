@@ -11,3 +11,15 @@ export type Movie = {
   thumbnail_width: number;
   thumbnail_height: number;
 };
+
+export type Meta = {
+  current_page: number;
+  per_page: number;
+  remaining_count: number;
+  total_items: number;
+  total_pages: number;
+};
+export type RequesResponse = {
+  items: Movies;
+  meta: Meta;
+};
