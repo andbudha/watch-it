@@ -57,15 +57,6 @@ export const Navbar = ({ loggedIn, setLoggedIn }: NavbarProps) => {
         </div>
       </div>
       <div className={styles.links_box}>
-        <NavLink to={''} className={styles.my_list_link_main_box}>
-          {loggedIn && (
-            <div className={styles.my_list_link_box}>
-              {' '}
-              <span className={styles.link_text}>my list</span>
-              <CiViewList className={styles.list_icon} />
-            </div>
-          )}
-        </NavLink>
         {!loggedIn ? (
           <div className={styles.auth_box}>
             <NavLink to={'login'} className={styles.login_button_box}>
@@ -78,9 +69,20 @@ export const Navbar = ({ loggedIn, setLoggedIn }: NavbarProps) => {
             </NavLink>
           </div>
         ) : (
-          <div className={styles.logout_button_box} onClick={logOutHandler}>
-            <span className={styles.link_text}>logout</span>
-            <CiLogout className={styles.logout_icon} />
+          <div className={styles.nav_box}>
+            <NavLink to={''} className={styles.my_list_link_main_box}>
+              {loggedIn && (
+                <div className={styles.my_list_link_box}>
+                  {' '}
+                  <span className={styles.link_text}>my list</span>
+                  <CiViewList className={styles.list_icon} />
+                </div>
+              )}
+            </NavLink>
+            <div className={styles.logout_button_box} onClick={logOutHandler}>
+              <span className={styles.link_text}>logout</span>
+              <CiLogout className={styles.logout_icon} />
+            </div>
           </div>
         )}
       </div>

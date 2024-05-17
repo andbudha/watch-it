@@ -10,7 +10,7 @@ import { Movies } from './assets/types/common_types';
 import { Login } from './components/pages/Login/Login';
 function App() {
   const [movies, setMovies] = useState<null | Movies>(null);
-  const [loggedIn, setLoggedIn] = useState<boolean>(false);
+  const [loggedIn, setLoggedIn] = useState<boolean>(true);
 
   console.log(movies);
 
