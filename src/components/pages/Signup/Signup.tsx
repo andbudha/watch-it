@@ -63,8 +63,6 @@ export const Signup = () => {
 
   const validation = validate(signupValues);
 
-  console.log(validation);
-
   const submitSignupValuesHandler = () => {
     if (validation.email && validation.password) {
       setSignupEmailInputError(true);

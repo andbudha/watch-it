@@ -9,9 +9,10 @@ import axios from 'axios';
 import { Movies } from './assets/types/common_types';
 import { Login } from './components/pages/Login/Login';
 import { Signup } from './components/pages/Signup/Signup';
+import { PageNotFound } from './components/pages/PageNotFound/PageNotFound';
 function App() {
   const [movies, setMovies] = useState<null | Movies>(null);
-  const [loggedIn, setLoggedIn] = useState<boolean>(false);
+  const [loggedIn, setLoggedIn] = useState<boolean>(true);
 
   console.log(movies);
 
@@ -43,6 +44,7 @@ function App() {
             />
             <Route path="login" element={<Login />} />
             <Route path="signup" element={<Signup />} />
+            <Route path="*" element={<PageNotFound />} />
           </Route>
         </Routes>
       </div>
