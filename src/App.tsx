@@ -11,7 +11,7 @@ import { Login } from './components/pages/Login/Login';
 import { Signup } from './components/pages/Signup/Signup';
 function App() {
   const [movies, setMovies] = useState<null | Movies>(null);
-  const [loggedIn, setLoggedIn] = useState<boolean>(true);
+  const [loggedIn, setLoggedIn] = useState<boolean>(false);
 
   console.log(movies);
 

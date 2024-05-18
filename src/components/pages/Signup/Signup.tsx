@@ -1,7 +1,30 @@
 import { NavLink } from 'react-router-dom';
 import styles from './Signup.module.scss';
+import { ChangeEvent, useState } from 'react';
 
 export const Signup = () => {
+  const [signupEmailInputValue, setSignupEmailInputValue] =
+    useState<string>('');
+  const [signupPasswordInputValue, setSignupPasswordInputValue] =
+    useState<string>('');
+
+  const catchSignupEmailValueHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    setSignupEmailInputValue(e.currentTarget.value);
+  };
+
+  const catchSignupPasswordValueHandler = (
+    e: ChangeEvent<HTMLInputElement>
+  ) => {
+    setSignupPasswordInputValue(e.currentTarget.value);
+  };
+
+  const submitSignupValuesHandler = () => {
+    const signupValues = {
+      email: signupEmailInputValue,
+      password: signupPasswordInputValue,
+    };
+    console.log(signupValues);
+  };
   return (
     <div className={styles.signup_main_box}>
       <div className={styles.signup_box}>
@@ -12,8 +35,8 @@ export const Signup = () => {
           <div className={styles.input_box}>
             <input
               className={styles.signup_input}
-              id="email"
-              name="email"
+              onChange={catchSignupEmailValueHandler}
+              value={signupEmailInputValue}
               type="email"
             />
           </div>
@@ -23,14 +46,17 @@ export const Signup = () => {
           <div className={styles.input_box}>
             <input
               className={styles.signup_input}
-              id="password"
-              name="password"
+              onChange={catchSignupPasswordValueHandler}
+              value={signupPasswordInputValue}
               type="password"
             />
           </div>
-          <button className={styles.signup_button} type="submit">
+          <div
+            className={styles.signup_button}
+            onClick={submitSignupValuesHandler}
+          >
             Sign up
-          </button>
+          </div>
           <div className={styles.info_box}>
             <span className={styles.info_text}>
               Already have an account?{' '}
