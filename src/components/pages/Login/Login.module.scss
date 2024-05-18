@@ -30,12 +30,13 @@
       // border: 1px solid;
       height: 20px;
       width: 260px;
+      font-weight: 300;
       @include flexBox(nowrap, row, start, center);
     }
     .input_box {
       // border: 1px solid;
       width: 260px;
-      height: 50px;
+      height: 56px;
       .login_input {
         width: 260px;
         height: 36px;

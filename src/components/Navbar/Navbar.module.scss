@@ -40,7 +40,7 @@
     width: 300px;
     @include flexBox(nowrap, row, center, center);
     .search_box {
-      border: 2px solid;
+      border: 1px solid;
       height: 36px;
       border-radius: 18px;
       width: 100%;
