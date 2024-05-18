@@ -30,12 +30,13 @@
       // border: 1px solid;
       height: 20px;
       width: 260px;
+      font-weight: 300;
       @include flexBox(nowrap, row, start, center);
     }
     .input_box {
       // border: 1px solid;
       width: 260px;
-      height: 50px;
+      height: 56px;
       .signup_input {
         width: 260px;
         height: 36px;
@@ -45,7 +46,7 @@
         outline: none;
         letter-spacing: 1.5px;
       }
-      .formik_error_text {
+      .error_text {
         color: $error_color;
         font-size: 0.8rem;
         font-weight: 500;
