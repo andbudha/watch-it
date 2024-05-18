@@ -91,7 +91,7 @@ export const Login = ({}: LoginProps) => {
             <span className={styles.info_text}>
               Don't have an account?{' '}
               <NavLink to={'/signup'} className={styles.signup_link}>
-                Sign Up
+                Sign up
               </NavLink>
             </span>
           </div>

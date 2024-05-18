@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Movies } from './assets/types/common_types';
 import { Login } from './components/pages/Login/Login';
+import { Signup } from './components/pages/Signup/Signup';
 function App() {
   const [movies, setMovies] = useState<null | Movies>(null);
   const [loggedIn, setLoggedIn] = useState<boolean>(true);
@@ -41,6 +42,7 @@ function App() {
               element={<MovieDetails movies={movies} />}
             />
             <Route path="login" element={<Login />} />
+            <Route path="signup" element={<Signup />} />
           </Route>
         </Routes>
       </div>

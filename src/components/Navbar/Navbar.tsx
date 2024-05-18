@@ -63,8 +63,8 @@ export const Navbar = ({ loggedIn, setLoggedIn }: NavbarProps) => {
               <span className={styles.link_text}>login</span>
               <CiLogin className={styles.login_icon} />
             </NavLink>
-            <NavLink to={'login'} className={styles.signin_button_box}>
-              <span className={styles.link_text}>signin</span>
+            <NavLink to={'signup'} className={styles.signin_button_box}>
+              <span className={styles.link_text}>signup</span>
               <RiAccountBoxLine className={styles.signin_icon} />
             </NavLink>
           </div>
