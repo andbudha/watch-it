@@ -5,13 +5,11 @@ import { RiMovie2Line } from 'react-icons/ri';
 import { RxCross2 } from 'react-icons/rx';
 import { RiAccountBoxLine } from 'react-icons/ri';
 
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useContext, useState } from 'react';
+import { AuthContext } from '../../context/AuthContext';
 
-type NavbarProps = {
-  loggedIn: boolean;
-  setLoggedIn: (loggedStatus: boolean) => void;
-};
-export const Navbar = ({ loggedIn, setLoggedIn }: NavbarProps) => {
+export const Navbar = () => {
+  const { isLoggedIn } = useContext(AuthContext);
   const [searchInputValue, setSearchInputValue] = useState<string>('');
 
   const getSearchInputValueHandler = (event: ChangeEvent<HTMLInputElement>) => {
@@ -21,9 +19,7 @@ export const Navbar = ({ loggedIn, setLoggedIn }: NavbarProps) => {
     setSearchInputValue('');
   };
 
-  const logOutHandler = () => {
-    setLoggedIn(false);
-  };
+  const logOutHandler = () => {};
   return (
     <div className={styles.nav_main_box}>
       <NavLink to={'/'} className={styles.home_page_link_box}>
@@ -57,7 +53,7 @@ export const Navbar = ({ loggedIn, setLoggedIn }: NavbarProps) => {
         </div>
       </div>
       <div className={styles.links_box}>
-        {!loggedIn ? (
+        {!isLoggedIn ? (
           <div className={styles.auth_box}>
             <NavLink to={'login'} className={styles.login_button_box}>
               <span className={styles.link_text}>login</span>
@@ -71,7 +67,7 @@ export const Navbar = ({ loggedIn, setLoggedIn }: NavbarProps) => {
         ) : (
           <div className={styles.nav_box}>
             <NavLink to={''} className={styles.my_list_link_main_box}>
-              {loggedIn && (
+              {isLoggedIn && (
                 <div className={styles.my_list_link_box}>
                   {' '}
                   <span className={styles.link_text}>my list</span>

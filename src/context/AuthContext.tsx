@@ -4,12 +4,14 @@ import { auth } from '../config/firebase';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 
 type AuthContextType = {
+  isLoggedIn: boolean;
   isLoading: boolean;
   user: UserResponse | undefined;
   registerUser: (signUpValues: SignupValueTypes) => Promise<void>;
 };
 
 const authInitialContextState = {
+  isLoggedIn: false,
   isLoading: false,
   user: {} as UserResponse,
   registerUser: () => Promise.resolve(),
@@ -22,6 +24,7 @@ type AuthProviderProps = { children: ReactNode };
 export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [user, setUser] = useState<UserResponse | undefined>(undefined);
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
 
   const registerUser = async (signUpValues: SignupValueTypes) => {
     try {
@@ -47,7 +50,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   };
 
   return (
-    <AuthContext.Provider value={{ isLoading, user, registerUser }}>
+    <AuthContext.Provider value={{ isLoggedIn, isLoading, user, registerUser }}>
       {children}
     </AuthContext.Provider>
   );

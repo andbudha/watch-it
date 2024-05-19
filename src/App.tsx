@@ -12,7 +12,6 @@ import { Signup } from './components/pages/Signup/Signup';
 import { PageNotFound } from './components/pages/PageNotFound/PageNotFound';
 function App() {
   const [movies, setMovies] = useState<null | Movies>(null);
-  const [loggedIn, setLoggedIn] = useState<boolean>(true);
 
   console.log(movies);
 
@@ -27,15 +26,12 @@ function App() {
 
   useEffect(() => {
     fetchMovies();
-  }, [loggedIn]);
+  }, []);
   return (
     <div className={styles.app_main_box}>
       <div className={styles.app_box}>
         <Routes>
-          <Route
-            path="/"
-            element={<Layout loggedIn={loggedIn} setLoggedIn={setLoggedIn} />}
-          >
+          <Route path="/" element={<Layout />}>
             <Route index element={<Home movies={movies} />} />
             <Route index path="movies" element={<GridMovies />} />
             <Route
