@@ -1,4 +1,4 @@
-import { NavLink, Navigate } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import styles from './Signup.module.scss';
 import { ChangeEvent, useContext, useState } from 'react';
 import { AuthContext } from '../../../context/AuthContext';
@@ -9,7 +9,7 @@ import {
 import { Loader } from '../../Loader/Loader';
 
 export const Signup = () => {
-  const { registerUser, isLoading, user } = useContext(AuthContext);
+  const { registerUser, isLoading } = useContext(AuthContext);
   const [signupEmailInputValue, setSignupEmailInputValue] =
     useState<string>('');
   const [signupPasswordInputValue, setSignupPasswordInputValue] =
@@ -74,17 +74,22 @@ export const Signup = () => {
       registerUser(signupValues);
     }
   };
-  if (user) {
-    return <Navigate to={'/login'} />;
-  }
+
   return (
     <div className={styles.signup_main_box}>
       <div className={styles.signup_box}>
         {isLoading && <Loader />}
         <form className={styles.signup_form}>
-          <div className={styles.label_box}>
-            <label htmlFor="email">Email Address</label>
-          </div>
+          {signupEmailInputError && validation.email ? (
+            <div className={styles.error_text_box}>
+              <span className={styles.error_text}>{validation.email}</span>
+            </div>
+          ) : (
+            <div className={styles.label_box}>
+              <label htmlFor="email">Email Address</label>
+            </div>
+          )}
+
           <div className={styles.input_box}>
             <input
               className={styles.signup_input}
@@ -92,13 +97,17 @@ export const Signup = () => {
               value={signupEmailInputValue}
               type="email"
             />
-            {signupEmailInputError && validation.email && (
-              <span className={styles.error_text}>{validation.email}</span>
-            )}
           </div>
-          <div className={styles.label_box}>
-            <label htmlFor="password">Password</label>
-          </div>
+
+          {signupPasswordInputError && validation.password ? (
+            <div className={styles.error_text_box}>
+              <span className={styles.error_text}>{validation.password}</span>
+            </div>
+          ) : (
+            <div className={styles.label_box}>
+              <label htmlFor="password">Password</label>
+            </div>
+          )}
           <div className={styles.input_box}>
             <input
               className={styles.signup_input}
@@ -106,9 +115,6 @@ export const Signup = () => {
               value={signupPasswordInputValue}
               type="password"
             />
-            {signupPasswordInputError && validation.password && (
-              <span className={styles.error_text}>{validation.password}</span>
-            )}
           </div>
           <div
             className={styles.signup_button}
