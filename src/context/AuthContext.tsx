@@ -2,6 +2,7 @@ import { ReactNode, createContext, useState } from 'react';
 import { SignupValueTypes, UserResponse } from '../assets/types/common_types';
 import { auth } from '../config/firebase';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { successfulToast } from '../assets/utils/successfulToast';
 
 type AuthContextType = {
   isLoggedIn: boolean;
@@ -35,11 +36,11 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         signUpValues.password
       );
       if (response) {
+        successfulToast('User created successfully. You can log in now.');
         setUser({
           userID: auth.currentUser?.uid,
           email: auth.currentUser?.email,
         });
-        alert('User successfully created!');
       }
       console.log(response);
       console.log(auth.currentUser?.email);

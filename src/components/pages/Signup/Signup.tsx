@@ -19,8 +19,6 @@ export const Signup = () => {
   const [signupPasswordInputError, setSignupPasswordInputError] =
     useState<boolean>(false);
 
-  console.log(isLoading);
-
   const signupValues: SignupValueTypes = {
     email: signupEmailInputValue,
     password: signupPasswordInputValue,

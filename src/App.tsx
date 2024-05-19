@@ -10,6 +10,7 @@ import { Movies } from './assets/types/common_types';
 import { Login } from './components/pages/Login/Login';
 import { Signup } from './components/pages/Signup/Signup';
 import { PageNotFound } from './components/pages/PageNotFound/PageNotFound';
+import { Toaster } from 'react-hot-toast';
 function App() {
   const [movies, setMovies] = useState<null | Movies>(null);
 
@@ -29,6 +30,7 @@ function App() {
   }, []);
   return (
     <div className={styles.app_main_box}>
+      <Toaster />
       <div className={styles.app_box}>
         <Routes>
           <Route path="/" element={<Layout />}>
