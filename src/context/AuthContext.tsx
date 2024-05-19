@@ -7,14 +7,24 @@ import { successfulToast } from '../assets/utils/successfulToast';
 type AuthContextType = {
   isLoggedIn: boolean;
   isLoading: boolean;
+  signupEmailInputValue: string;
+  signupPasswordInputValue: string;
   user: UserResponse | undefined;
   registerUser: (signUpValues: SignupValueTypes) => Promise<void>;
+  setSignupEmailInputValue: (newSignupEmailInputValue: string) => void;
+  setSignupPasswordInputValue: (newSignupPasswordInputValue: string) => void;
 };
 
 const authInitialContextState = {
   isLoggedIn: false,
   isLoading: false,
+  signupEmailInputValue: '',
+  signupPasswordInputValue: '',
   user: {} as UserResponse,
+  setSignupEmailInputValue: (newSignupEmailInputValue: string) =>
+    newSignupEmailInputValue,
+  setSignupPasswordInputValue: (newSignupPasswordInputValue: string) =>
+    newSignupPasswordInputValue,
   registerUser: () => Promise.resolve(),
 } as AuthContextType;
 
@@ -26,6 +36,10 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [user, setUser] = useState<UserResponse | undefined>(undefined);
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+  const [signupEmailInputValue, setSignupEmailInputValue] =
+    useState<string>('');
+  const [signupPasswordInputValue, setSignupPasswordInputValue] =
+    useState<string>('');
 
   const registerUser = async (signUpValues: SignupValueTypes) => {
     try {
@@ -37,6 +51,8 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       );
       if (response) {
         successfulToast('User created successfully. You can log in now.');
+        setSignupEmailInputValue('');
+        setSignupPasswordInputValue('');
         setUser({
           userID: auth.currentUser?.uid,
           email: auth.currentUser?.email,
@@ -51,7 +67,18 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   };
 
   return (
-    <AuthContext.Provider value={{ isLoggedIn, isLoading, user, registerUser }}>
+    <AuthContext.Provider
+      value={{
+        isLoggedIn,
+        isLoading,
+        user,
+        registerUser,
+        signupEmailInputValue,
+        signupPasswordInputValue,
+        setSignupEmailInputValue,
+        setSignupPasswordInputValue,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );

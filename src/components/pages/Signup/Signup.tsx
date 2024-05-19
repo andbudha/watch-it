@@ -9,11 +9,15 @@ import {
 import { Loader } from '../../Loader/Loader';
 
 export const Signup = () => {
-  const { registerUser, isLoading } = useContext(AuthContext);
-  const [signupEmailInputValue, setSignupEmailInputValue] =
-    useState<string>('');
-  const [signupPasswordInputValue, setSignupPasswordInputValue] =
-    useState<string>('');
+  const {
+    registerUser,
+    isLoading,
+    signupEmailInputValue,
+    setSignupEmailInputValue,
+    signupPasswordInputValue,
+    setSignupPasswordInputValue,
+  } = useContext(AuthContext);
+
   const [signupEmailInputError, setSignupEmailInputError] =
     useState<boolean>(false);
   const [signupPasswordInputError, setSignupPasswordInputError] =
@@ -72,6 +76,8 @@ export const Signup = () => {
       setSignupPasswordInputError(true);
     } else if (!validation.email && !validation.password) {
       registerUser(signupValues);
+      setSignupEmailInputError(false);
+      setSignupPasswordInputError(false);
     }
   };
 
