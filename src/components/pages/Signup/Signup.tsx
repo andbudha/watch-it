@@ -1,8 +1,14 @@
 import { NavLink } from 'react-router-dom';
 import styles from './Signup.module.scss';
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useContext, useState } from 'react';
+import { AuthContext } from '../../../context/AuthContext';
+import {
+  SignupValueTypes,
+  SignupErrorTypes,
+} from '../../../assets/types/common_types';
 
 export const Signup = () => {
+  const { registerUser, isLoading } = useContext(AuthContext);
   const [signupEmailInputValue, setSignupEmailInputValue] =
     useState<string>('');
   const [signupPasswordInputValue, setSignupPasswordInputValue] =
@@ -12,15 +18,9 @@ export const Signup = () => {
   const [signupPasswordInputError, setSignupPasswordInputError] =
     useState<boolean>(false);
 
-  type SignupValuesType = {
-    email: string;
-    password: string;
-  };
-  type SignupErrorsType = {
-    email: string;
-    password: string;
-  };
-  const signupValues: SignupValuesType = {
+  console.log(isLoading);
+
+  const signupValues: SignupValueTypes = {
     email: signupEmailInputValue,
     password: signupPasswordInputValue,
   };
@@ -41,8 +41,8 @@ export const Signup = () => {
     }
   };
 
-  const validate = (values: SignupValuesType) => {
-    const errors: SignupErrorsType = {
+  const validate = (values: SignupValueTypes) => {
+    const errors: SignupErrorTypes = {
       email: '',
       password: '',
     };
@@ -73,6 +73,7 @@ export const Signup = () => {
       setSignupPasswordInputError(true);
     } else if (!validation.email && !validation.password) {
       console.log(signupValues);
+      registerUser(signupValues);
     }
   };
 
