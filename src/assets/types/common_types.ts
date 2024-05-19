@@ -11,3 +11,27 @@ export type Movie = {
 };
 
 export type Movies = Movie[];
+
+export type LoginValueTypes = {
+  email: string;
+  password: string;
+};
+
+export type LoginErrorTypes = {
+  email: string;
+  password: string;
+};
+
+export type SignupValueTypes = {
+  email: string;
+  password: string;
+};
+export type SignupErrorTypes = {
+  email: string;
+  password: string;
+};
+
+export type UserResponse = {
+  email: string | undefined | null;
+  userID: string | undefined;
+};
