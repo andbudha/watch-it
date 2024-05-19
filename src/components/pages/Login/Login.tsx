@@ -1,20 +1,15 @@
 import { useFormik } from 'formik';
 import styles from './Login.module.scss';
 import { NavLink } from 'react-router-dom';
+import {
+  LoginErrorTypes,
+  LoginValueTypes,
+} from '../../../assets/types/common_types';
 
 type LoginProps = {};
 export const Login = ({}: LoginProps) => {
-  type LoginValuesType = {
-    email: string;
-    password: string;
-  };
-
-  type LoginErrorType = {
-    email: string;
-    password: string;
-  };
-  const validate = (values: LoginValuesType) => {
-    const errors: LoginErrorType = {
+  const validate = (values: LoginValueTypes) => {
+    const errors: LoginErrorTypes = {
       email: '',
       password: '',
     };
@@ -38,7 +33,7 @@ export const Login = ({}: LoginProps) => {
       password: '',
     },
     validate,
-    onSubmit: (values: LoginValuesType) => {
+    onSubmit: (values: LoginValueTypes) => {
       console.log(values.email);
       console.log(values.password);
     },
