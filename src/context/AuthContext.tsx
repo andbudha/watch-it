@@ -36,6 +36,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
           userID: auth.currentUser?.uid,
           email: auth.currentUser?.email,
         });
+        alert('User successfully created!');
       }
       console.log(response);
       console.log(auth.currentUser?.email);

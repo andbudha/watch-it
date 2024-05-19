@@ -6,6 +6,7 @@ import {
   SignupValueTypes,
   SignupErrorTypes,
 } from '../../../assets/types/common_types';
+import { Loader } from '../../Loader/Loader';
 
 export const Signup = () => {
   const { registerUser, isLoading } = useContext(AuthContext);
@@ -72,7 +73,6 @@ export const Signup = () => {
     } else if (validation.password) {
       setSignupPasswordInputError(true);
     } else if (!validation.email && !validation.password) {
-      console.log(signupValues);
       registerUser(signupValues);
     }
   };
@@ -80,6 +80,7 @@ export const Signup = () => {
   return (
     <div className={styles.signup_main_box}>
       <div className={styles.signup_box}>
+        {isLoading && <Loader />}
         <form className={styles.signup_form}>
           <div className={styles.label_box}>
             <label htmlFor="email">Email Address</label>

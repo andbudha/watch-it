@@ -11,6 +11,7 @@
   @include flexBox(nowrap, row, center, center);
 
   .signup_box {
+    position: relative;
     padding: 10px;
     height: 300px;
     width: 320px;
