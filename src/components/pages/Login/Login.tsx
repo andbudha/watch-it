@@ -1,12 +1,18 @@
 import { useFormik } from 'formik';
 import styles from './Login.module.scss';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Navigate } from 'react-router-dom';
 import {
   LoginErrorValues,
   LoginValues,
 } from '../../../assets/types/common_types';
+import { useContext } from 'react';
+import { AuthContext } from '../../../context/AuthContext';
+import { Loader } from '../../Loader/Loader';
 
 export const Login = () => {
+  const { isLoggedIn, logInUser, isLoading } = useContext(AuthContext);
+  console.log(isLoggedIn);
+
   const validate = (values: LoginValues) => {
     const errors: LoginErrorValues = {};
     if (!values.email) {
@@ -31,11 +37,17 @@ export const Login = () => {
     validate,
     onSubmit: (values: LoginValues) => {
       console.log(values);
+      logInUser(values);
     },
   });
+
+  if (isLoggedIn) {
+    return <Navigate to={'/'} />;
+  }
   return (
     <div className={styles.login_main_box}>
       <div className={styles.login_box}>
+        {isLoading && <Loader />}
         <form className={styles.login_form} onSubmit={formik.handleSubmit}>
           {formik.errors.email ? (
             <div className={styles.formik_error_text_box}>

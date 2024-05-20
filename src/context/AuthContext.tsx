@@ -1,8 +1,16 @@
 import { ReactNode, createContext, useState } from 'react';
-import { SignupValueTypes, UserResponse } from '../assets/types/common_types';
+import {
+  LoginValues,
+  SignupValueTypes,
+  UserResponse,
+} from '../assets/types/common_types';
 import { auth } from '../config/firebase';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from 'firebase/auth';
 import { successfulToast } from '../assets/utils/successfulToast';
+import { FirebaseError } from 'firebase/app';
 
 type AuthContextType = {
   isLoggedIn: boolean;
@@ -11,6 +19,7 @@ type AuthContextType = {
   signupPasswordInputValue: string;
   user: UserResponse | undefined;
   registerUser: (signUpValues: SignupValueTypes) => Promise<void>;
+  logInUser: (logInValues: LoginValues) => Promise<void>;
   setSignupEmailInputValue: (newSignupEmailInputValue: string) => void;
   setSignupPasswordInputValue: (newSignupPasswordInputValue: string) => void;
 };
@@ -26,6 +35,7 @@ const authInitialContextState = {
   setSignupPasswordInputValue: (newSignupPasswordInputValue: string) =>
     newSignupPasswordInputValue,
   registerUser: () => Promise.resolve(),
+  logInUser: () => Promise.resolve(),
 } as AuthContextType;
 
 export const AuthContext = createContext(authInitialContextState);
@@ -42,8 +52,8 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     useState<string>('');
 
   const registerUser = async (signUpValues: SignupValueTypes) => {
+    setIsLoading(true);
     try {
-      setIsLoading(true);
       const response = await createUserWithEmailAndPassword(
         auth,
         signUpValues.email,
@@ -66,6 +76,26 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     }
   };
 
+  const logInUser = async (logInValues: LoginValues) => {
+    setIsLoading(true);
+    try {
+      const response = await signInWithEmailAndPassword(
+        auth,
+        logInValues.email,
+        logInValues.password
+      );
+      console.log(response);
+
+      if (response) {
+        successfulToast('Logged in successfully!');
+        setIsLoggedIn(true);
+      }
+    } catch (error) {
+      if (error instanceof FirebaseError) console.log(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
   return (
     <AuthContext.Provider
       value={{
@@ -73,6 +103,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         isLoading,
         user,
         registerUser,
+        logInUser,
         signupEmailInputValue,
         signupPasswordInputValue,
         setSignupEmailInputValue,
