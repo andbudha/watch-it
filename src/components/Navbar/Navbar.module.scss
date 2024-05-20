@@ -14,6 +14,7 @@
     width: 130px;
     height: 36px;
     text-decoration: none;
+    color: $font_secondary_color;
     @include flexBox(nowrap, row, end, center);
     .logo_icon {
       height: 25px;
@@ -53,6 +54,7 @@
       height: 100%;
       text-decoration: none;
       cursor: pointer;
+      color: $font_secondary_color;
       @include flexBox(nowrap, row, center, center);
       &:hover {
         color: #fff;

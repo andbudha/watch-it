@@ -6,6 +6,7 @@
   width: 100%;
   border-radius: 12px;
   background-color: $second_background_color;
+  color: $font_secondary_color;
   box-shadow: $shadow_color 0px 2px 10px 0px,
     rgba(0, 0, 0, 0.06) 0px 0px 0px 0px;
   @include flexBox(nowrap, row, center, center);
@@ -21,7 +22,6 @@
     @include flexBox(nowrap, column, center, center);
   }
   .login_form {
-    // border: 1px solid;
     height: 230px;
     width: 280px;
     padding: 10px 0;
@@ -38,14 +38,12 @@
       }
     }
     .label_box {
-      // border: 1px solid;
       height: 20px;
       width: 260px;
       padding: 0 6px;
       @include flexBox(nowrap, row, start, center);
     }
     .input_box {
-      // border: 1px solid;
       width: 260px;
       margin-bottom: 10px;
       .login_input {
@@ -56,6 +54,7 @@
         border-radius: 5px;
         outline: none;
         letter-spacing: 1.5px;
+        color: $font_secondary_color;
       }
     }
     .login_button {
@@ -80,15 +79,15 @@
       }
     }
     .info_box {
-      // border: 1px solid;
       height: 30px;
       width: 280px;
+      color: $font_secondary_color;
       @include flexBox(nowrap, row, center, center);
-
       .info_text {
         font-size: 0.9rem;
       }
-      .login_link {
+      .signup_link {
+        color: $font_secondary_color;
         font-weight: 500;
       }
     }

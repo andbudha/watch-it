@@ -9,7 +9,7 @@ export const successfulToast = (message: string) =>
       color: '#7e30e1',
     },
     iconTheme: {
-      primary: '#7e30e1',
+      primary: '#864af9',
       secondary: '#fff',
     },
   });

@@ -10,12 +10,14 @@
     height: 60px;
     width: 320px;
     margin-top: 20px;
+    color: $font_secondary_color;
     @include flexBox(nowrap, row, center, center);
     .search_box {
       border: 1px solid;
       height: 36px;
       border-radius: 18px;
       width: 300px;
+      color: $font_secondary_color;
       @include flexBox(nowrap, row, center, center);
       .search_icon_box {
         height: 100%;
@@ -34,6 +36,7 @@
         width: 220px;
         border: none;
         outline: none;
+        color: $font_primary_color;
         letter-spacing: 1.2px;
         font-style: oblique;
         font-weight: 500;
