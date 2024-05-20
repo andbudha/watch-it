@@ -15,6 +15,7 @@
     height: 400px;
     width: 270px;
     margin: 10px;
+    border-radius: 12px;
     object-fit: contain;
     box-shadow: $shadow_color 0px 2px 20px 0px,
       rgba(0, 0, 0, 0.06) 0px 0px 0px 0px;
@@ -23,6 +24,7 @@
     .movie_img {
       height: 400px;
       width: 270px;
+      border-radius: 12px;
       object-fit: contain;
     }
   }

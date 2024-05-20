@@ -1,23 +1,13 @@
 import { NavLink } from 'react-router-dom';
 import styles from './Navbar.module.scss';
-import { CiViewList, CiLogin, CiSearch, CiLogout } from 'react-icons/ci';
+import { CiViewList, CiLogin, CiLogout } from 'react-icons/ci';
 import { RiMovie2Line } from 'react-icons/ri';
-import { RxCross2 } from 'react-icons/rx';
 import { RiAccountBoxLine } from 'react-icons/ri';
-
-import { ChangeEvent, useContext, useState } from 'react';
+import { useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 
 export const Navbar = () => {
   const { isLoggedIn } = useContext(AuthContext);
-  const [searchInputValue, setSearchInputValue] = useState<string>('');
-
-  const getSearchInputValueHandler = (event: ChangeEvent<HTMLInputElement>) => {
-    setSearchInputValue(event.currentTarget.value);
-  };
-  const emptySearchInputHandler = () => {
-    setSearchInputValue('');
-  };
 
   const logOutHandler = () => {};
   return (
@@ -29,29 +19,6 @@ export const Navbar = () => {
           <span className={styles.logo_text}>.watch..it</span>
         </div>
       </NavLink>
-
-      <div className={styles.search_main_box}>
-        <div className={styles.search_box}>
-          <div className={styles.search_icon_box}>
-            {' '}
-            <CiSearch className={styles.search_icon} />
-          </div>{' '}
-          <input
-            value={searchInputValue}
-            className={styles.search_input}
-            onChange={getSearchInputValueHandler}
-          />
-          <div className={styles.remove_icon_box}>
-            {' '}
-            {searchInputValue && (
-              <RxCross2
-                className={styles.remove_icon}
-                onClick={emptySearchInputHandler}
-              />
-            )}
-          </div>
-        </div>
-      </div>
       <div className={styles.links_box}>
         {!isLoggedIn ? (
           <div className={styles.auth_box}>
