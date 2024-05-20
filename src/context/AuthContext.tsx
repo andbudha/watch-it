@@ -8,6 +8,7 @@ import { auth } from '../config/firebase';
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  signOut,
 } from 'firebase/auth';
 import { successfulToast } from '../assets/utils/successfulToast';
 import { FirebaseError } from 'firebase/app';
@@ -20,6 +21,7 @@ type AuthContextType = {
   user: UserResponse | undefined;
   registerUser: (signUpValues: SignupValueTypes) => Promise<void>;
   logInUser: (logInValues: LoginValues) => Promise<void>;
+  logOutUser: () => Promise<void>;
   setSignupEmailInputValue: (newSignupEmailInputValue: string) => void;
   setSignupPasswordInputValue: (newSignupPasswordInputValue: string) => void;
 };
@@ -36,6 +38,7 @@ const authInitialContextState = {
     newSignupPasswordInputValue,
   registerUser: () => Promise.resolve(),
   logInUser: () => Promise.resolve(),
+  logOutUser: () => Promise.resolve(),
 } as AuthContextType;
 
 export const AuthContext = createContext(authInitialContextState);
@@ -96,6 +99,19 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       setIsLoading(false);
     }
   };
+  const logOutUser = async () => {
+    setIsLoading(true);
+    try {
+      const response = await signOut(auth);
+      console.log(response);
+      successfulToast('Logged out successfully!');
+      setIsLoggedIn(false);
+    } catch (error) {
+      if (error instanceof FirebaseError) console.log(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
   return (
     <AuthContext.Provider
       value={{
@@ -104,6 +120,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         user,
         registerUser,
         logInUser,
+        logOutUser,
         signupEmailInputValue,
         signupPasswordInputValue,
         setSignupEmailInputValue,

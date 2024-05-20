@@ -7,9 +7,11 @@ import { useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 
 export const Navbar = () => {
-  const { isLoggedIn } = useContext(AuthContext);
+  const { isLoggedIn, logOutUser } = useContext(AuthContext);
 
-  const logOutHandler = () => {};
+  const logOutHandler = () => {
+    logOutUser();
+  };
   return (
     <div className={styles.nav_main_box}>
       <NavLink to={'/'} className={styles.home_page_link_box}>
