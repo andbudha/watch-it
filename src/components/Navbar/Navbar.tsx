@@ -35,7 +35,7 @@ export const Navbar = () => {
           </div>
         ) : (
           <div className={styles.nav_box}>
-            <NavLink to={''} className={styles.my_list_link_main_box}>
+            <NavLink to={'mylist'} className={styles.my_list_link_main_box}>
               {isLoggedIn && (
                 <div className={styles.my_list_link_box}>
                   {' '}

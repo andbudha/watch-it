@@ -11,6 +11,7 @@ import { Login } from './components/pages/Login/Login';
 import { Signup } from './components/pages/Signup/Signup';
 import { PageNotFound } from './components/pages/PageNotFound/PageNotFound';
 import { Toaster } from 'react-hot-toast';
+import { MyList } from './components/pages/MyList/MyList';
 function App() {
   const [movies, setMovies] = useState<null | Movies>(null);
 
@@ -36,10 +37,12 @@ function App() {
           <Route path="/" element={<Layout />}>
             <Route index element={<Home movies={movies} />} />
             <Route index path="movies" element={<GridMovies />} />
+            <Route index path="mylist" element={<MyList />} />
             <Route
               path="movies/movie/:movieID"
               element={<MovieDetails movies={movies} />}
             />
+
             <Route path="login" element={<Login />} />
             <Route path="signup" element={<Signup />} />
             <Route path="*" element={<PageNotFound />} />
