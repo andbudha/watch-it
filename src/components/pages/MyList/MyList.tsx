@@ -1,7 +1,14 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, Navigate } from 'react-router-dom';
 import styles from './MyList.module.scss';
 import { IoChevronBack } from 'react-icons/io5';
+import { useContext } from 'react';
+import { AuthContext } from '../../../context/AuthContext';
 export const MyList = () => {
+  const { isLoggedIn } = useContext(AuthContext);
+
+  if (!isLoggedIn) {
+    return <Navigate to={'/'} />;
+  }
   return (
     <div className={styles.mylist_main_box}>
       <div className={styles.mylist_box}>

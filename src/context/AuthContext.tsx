@@ -12,6 +12,7 @@ import {
 } from 'firebase/auth';
 import { successfulToast } from '../assets/utils/successfulToast';
 import { FirebaseError } from 'firebase/app';
+import { generateFirebaseErrorInstance } from '../assets/utils/failedToast';
 
 type AuthContextType = {
   isLoggedIn: boolean;
@@ -74,6 +75,10 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       console.log(response);
       console.log(auth.currentUser?.email);
     } catch (error) {
+      if (error instanceof FirebaseError) {
+        console.log(error);
+        generateFirebaseErrorInstance(error);
+      }
     } finally {
       setIsLoading(false);
     }
@@ -94,7 +99,10 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         setIsLoggedIn(true);
       }
     } catch (error) {
-      if (error instanceof FirebaseError) console.log(error);
+      if (error instanceof FirebaseError) {
+        console.log(error);
+        generateFirebaseErrorInstance(error);
+      }
     } finally {
       setIsLoading(false);
     }
@@ -107,7 +115,10 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       successfulToast('Logged out successfully!');
       setIsLoggedIn(false);
     } catch (error) {
-      if (error instanceof FirebaseError) console.log(error);
+      if (error instanceof FirebaseError) {
+        console.log(error);
+        generateFirebaseErrorInstance(error);
+      }
     } finally {
       setIsLoading(false);
     }
