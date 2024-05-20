@@ -2,17 +2,13 @@ import { useFormik } from 'formik';
 import styles from './Login.module.scss';
 import { NavLink } from 'react-router-dom';
 import {
-  LoginErrorTypes,
-  LoginValueTypes,
+  LoginErrorValues,
+  LoginValues,
 } from '../../../assets/types/common_types';
 
-type LoginProps = {};
-export const Login = ({}: LoginProps) => {
-  const validate = (values: LoginValueTypes) => {
-    const errors: LoginErrorTypes = {
-      email: '',
-      password: '',
-    };
+export const Login = () => {
+  const validate = (values: LoginValues) => {
+    const errors: LoginErrorValues = {};
     if (!values.email) {
       errors.email = 'Email is required!';
     } else if (
@@ -33,9 +29,8 @@ export const Login = ({}: LoginProps) => {
       password: '',
     },
     validate,
-    onSubmit: (values: LoginValueTypes) => {
-      console.log(values.email);
-      console.log(values.password);
+    onSubmit: (values: LoginValues) => {
+      console.log(values);
     },
   });
   return (
@@ -85,7 +80,6 @@ export const Login = ({}: LoginProps) => {
               value={formik.values.password}
             />
           </div>
-
           <button className={styles.login_button} type="submit">
             Login
           </button>

@@ -12,14 +12,14 @@ export type Movie = {
 
 export type Movies = Movie[];
 
-export type LoginValueTypes = {
+export type LoginValues = {
   email: string;
   password: string;
 };
 
-export type LoginErrorTypes = {
-  email: string;
-  password: string;
+export type LoginErrorValues = {
+  email?: string;
+  password?: string;
 };
 
 export type SignupValueTypes = {
