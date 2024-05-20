@@ -9,6 +9,7 @@
   .search_main_box {
     height: 60px;
     width: 320px;
+    margin-top: 20px;
     @include flexBox(nowrap, row, center, center);
     .search_box {
       border: 1px solid;

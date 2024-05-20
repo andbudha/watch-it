@@ -42,9 +42,18 @@ export const Login = ({}: LoginProps) => {
     <div className={styles.login_main_box}>
       <div className={styles.login_box}>
         <form className={styles.login_form} onSubmit={formik.handleSubmit}>
-          <div className={styles.label_box}>
-            <label htmlFor="email">Email Address</label>
-          </div>
+          {formik.errors.email ? (
+            <div className={styles.formik_error_text_box}>
+              <div className={styles.formik_error_text}>
+                {formik.errors.email}
+              </div>
+            </div>
+          ) : (
+            <div className={styles.label_box}>
+              <label htmlFor="email">Email Address</label>
+            </div>
+          )}
+
           <div className={styles.input_box}>
             <input
               className={styles.login_input}
@@ -54,15 +63,18 @@ export const Login = ({}: LoginProps) => {
               onChange={formik.handleChange}
               value={formik.values.email}
             />
-            {formik.errors.email ? (
+          </div>
+          {formik.errors.password ? (
+            <div className={styles.formik_error_text_box}>
               <div className={styles.formik_error_text}>
-                {formik.errors.email}
+                {formik.errors.password}
               </div>
-            ) : null}
-          </div>
-          <div className={styles.label_box}>
-            <label htmlFor="password">Password</label>
-          </div>
+            </div>
+          ) : (
+            <div className={styles.label_box}>
+              <label htmlFor="password">Password</label>
+            </div>
+          )}
           <div className={styles.input_box}>
             <input
               className={styles.login_input}
@@ -72,11 +84,6 @@ export const Login = ({}: LoginProps) => {
               onChange={formik.handleChange}
               value={formik.values.password}
             />
-            {formik.errors.password ? (
-              <div className={styles.formik_error_text}>
-                {formik.errors.password}
-              </div>
-            ) : null}
           </div>
 
           <button className={styles.login_button} type="submit">
