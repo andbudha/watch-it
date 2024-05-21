@@ -10,24 +10,53 @@
   box-shadow: $shadow_color 0px 2px 10px 0px,
     rgba(0, 0, 0, 0.06) 0px 0px 0px 0px;
   @include flexBox(nowrap, row, center, center);
-  .movie_img_box {
+  .img_and_button_box {
     // border: 1px solid;
-    height: 400px;
-    width: 270px;
+    height: 500px;
+    width: 300px;
     margin: 10px;
-    border-radius: 12px;
-    object-fit: contain;
-    box-shadow: $shadow_color 0px 2px 20px 0px,
-      rgba(0, 0, 0, 0.06) 0px 0px 0px 0px;
-    @include flexBox(nowrap, row, center, center);
-
-    .movie_img {
+    padding: 10px;
+    @include flexBox(nowrap, column, space-around, center);
+    .movie_img_box {
+      // border: 1px solid;
       height: 400px;
-      width: 270px;
+      width: 269px;
       border-radius: 12px;
       object-fit: contain;
+      box-shadow: $shadow_color 0px 2px 10px 0px,
+        rgba(0, 0, 0, 0.06) 0px 0px 0px 0px;
+      @include flexBox(nowrap, row, center, center);
+
+      .movie_img {
+        height: 400px;
+        width: 270px;
+        border-radius: 12px;
+        object-fit: contain;
+      }
+    }
+    .add_movie_button {
+      height: 40px;
+      width: 270px;
+      margin: 5px 0;
+      cursor: pointer;
+      border: 1px solid;
+      border-radius: 7px;
+      font-weight: 500;
+      color: $second_background_color;
+      background-color: $font_secondary_color;
+      @include flexBox(nowrap, column, center, center);
+      &:hover {
+        transition: 0.4s;
+        color: $font_secondary_color;
+        border: 1px solid $font_secondary_color;
+        background-color: $second_background_color;
+      }
+      &:not(:hover) {
+        transition: 0.5s;
+      }
     }
   }
+
   .movie_detail_box {
     // border: 1px solid;
     min-height: 400px;
@@ -36,10 +65,9 @@
     margin: 10px;
     line-height: 1.6;
     @include flexBox(nowrap, column, start, start);
-
     .movie_details_header {
       font-weight: 700;
-      font-style: oblique;
+      color: $font_primary_color;
     }
     .movie_details {
       font-weight: 400;

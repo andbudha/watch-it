@@ -1,26 +1,46 @@
 import { useParams } from 'react-router-dom';
 import styles from './MovieDetails.module.scss';
 import { Movie } from '../../../assets/types/common_types';
+import { useContext } from 'react';
+import { AuthContext } from '../../../context/AuthContext';
 
 type MovieProps = {
   movies: Movie[] | null;
 };
 export const MovieDetails = ({ movies }: MovieProps) => {
   const { movieID } = useParams();
-
+  const { user } = useContext(AuthContext);
   const movie = movies?.find((movie) => movie.title === movieID);
   const castList = movie?.cast.splice(0, 5).join(', ');
   const genreList = movie?.genres.join(', ');
 
+  const addMovieToMyListHandler = () => {
+    const movieToAdd = {
+      title: movie?.title,
+      year: movie?.year,
+      userID: user?.userID,
+    };
+    console.log(movieToAdd);
+  };
+
   return (
     <div className={styles.movie_details_main_box}>
-      <div className={styles.movie_img_box}>
-        <img
-          className={styles.movie_img}
-          src={movie?.thumbnail}
-          alt={`movie poster`}
-        />
+      <div className={styles.img_and_button_box}>
+        <div className={styles.movie_img_box}>
+          <img
+            className={styles.movie_img}
+            src={movie?.thumbnail}
+            alt={`movie poster`}
+          />
+        </div>
+        <div
+          className={styles.add_movie_button}
+          onClick={addMovieToMyListHandler}
+        >
+          add to my list
+        </div>
       </div>
+
       <div className={styles.movie_detail_box}>
         <div className={styles.title_box}>
           <h3 className={styles.movie_details_header}>
