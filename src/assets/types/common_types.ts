@@ -35,3 +35,10 @@ export type UserResponse = {
   email: string | undefined | null;
   userID: string | undefined;
 };
+
+export type ListMovieType = {
+  title: string;
+  year: number;
+  userID: string;
+  thumbnail: string;
+};
