@@ -49,7 +49,7 @@ type AuthProviderProps = { children: ReactNode };
 export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [user, setUser] = useState<UserResponse | undefined>(undefined);
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(true);
   const [signupEmailInputValue, setSignupEmailInputValue] =
     useState<string>('');
   const [signupPasswordInputValue, setSignupPasswordInputValue] =
@@ -92,11 +92,11 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         logInValues.email,
         logInValues.password
       );
-      console.log(response);
 
       if (response) {
         successfulToast('Logged in successfully!');
         setIsLoggedIn(true);
+        setUser({ email: response.user.email, userID: response.user.uid });
       }
     } catch (error) {
       if (error instanceof FirebaseError) {

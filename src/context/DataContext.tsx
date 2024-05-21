@@ -29,11 +29,9 @@ export const DataProvider = ({ children }: DataProviderProps) => {
   >(null);
 
   console.log(movies);
-
+  const localData = '../../data/movies.json';
   const fetchMovies = async () => {
-    const response = await axios.get<Movies>(
-      'https://5b81e3264853b358.mokky.dev/mixedmovies'
-    );
+    const response = await axios.get<Movies>(localData);
     if (response) {
       setMovies(response.data.slice(0, 10));
     }
