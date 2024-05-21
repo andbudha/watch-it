@@ -31,7 +31,6 @@ function App() {
               path="movies/movie/:movieID"
               element={<MovieDetails movies={movies} />}
             />
-
             <Route path="login" element={<Login />} />
             <Route path="signup" element={<Signup />} />
             <Route path="*" element={<PageNotFound />} />
