@@ -4,30 +4,19 @@ import { Layout } from './components/Layout/Layout';
 import { Home } from './components/pages/Home/Home';
 import { MovieDetails } from './components/pages/MovieDetailsPage/MovieDetails';
 import { GridMovies } from './components/pages/Home/GridMovies/GridMovies';
-import { useEffect, useState } from 'react';
-import axios from 'axios';
-import { Movies } from './assets/types/common_types';
+import { useContext, useEffect } from 'react';
 import { Login } from './components/pages/Login/Login';
 import { Signup } from './components/pages/Signup/Signup';
 import { PageNotFound } from './components/pages/PageNotFound/PageNotFound';
 import { Toaster } from 'react-hot-toast';
 import { MyList } from './components/pages/MyList/MyList';
+import { DataContext } from './context/DataContext';
 function App() {
-  const [movies, setMovies] = useState<null | Movies>(null);
-
-  console.log(movies);
-
-  const fetchMovies = async () => {
-    const response = await axios.get<Movies>(
-      'https://5b81e3264853b358.mokky.dev/mixedmovies'
-    );
-    if (response) {
-      setMovies(response.data.slice(0, 10));
-    }
-  };
+  const { getMovieList, fetchMovies, movies } = useContext(DataContext);
 
   useEffect(() => {
     fetchMovies();
+    getMovieList();
   }, []);
   return (
     <div className={styles.app_main_box}>
