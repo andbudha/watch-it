@@ -3,13 +3,13 @@ import styles from './MyList.module.scss';
 import { AiFillDelete } from 'react-icons/ai';
 
 import { IoChevronBack } from 'react-icons/io5';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { AuthContext } from '../../../context/AuthContext';
 import { DataContext } from '../../../context/DataContext';
 export const MyList = () => {
   const { isLoggedIn, user } = useContext(AuthContext);
   const { fireStoreMovieList } = useContext(DataContext);
-
+  useEffect(() => {}, [fireStoreMovieList]);
   console.log(fireStoreMovieList);
   console.log(user?.userID);
   const filteredList = fireStoreMovieList?.filter(
