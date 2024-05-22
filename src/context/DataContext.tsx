@@ -1,7 +1,13 @@
 import { ReactNode, createContext, useState } from 'react';
 import { ListMovieType, Movies } from '../assets/types/common_types';
 import { selectedMovieDataBase } from '../config/firebase';
-import { addDoc, collection, getDocs } from 'firebase/firestore';
+import {
+  addDoc,
+  collection,
+  deleteDoc,
+  doc,
+  getDocs,
+} from 'firebase/firestore';
 import axios from 'axios';
 
 type NewMovieToAddType = {
@@ -15,6 +21,7 @@ type DataContextType = {
   movies: Movies | null;
   fetchMovies: () => Promise<void>;
   addMovieToMyList: (newMovie: NewMovieToAddType) => Promise<void>;
+  deleteItemFromMyList: (movieID: string) => Promise<void>;
 };
 
 type DataProviderProps = { children: ReactNode };
@@ -25,6 +32,7 @@ const initialDataContextState = {
   movies: [] as Movies,
   fetchMovies: () => Promise.resolve(),
   addMovieToMyList: () => Promise.resolve(),
+  deleteItemFromMyList: () => Promise.resolve(),
 } as DataContextType;
 
 export const DataContext = createContext(initialDataContextState);
@@ -36,7 +44,7 @@ export const DataProvider = ({ children }: DataProviderProps) => {
   >(null);
 
   console.log(movies);
-  const localData = '../../data/movies.json';
+  // const localData = '../../data/movies.json';
   const fetchMovies = async () => {
     const response = await axios.get<Movies>(
       'https://5b81e3264853b358.mokky.dev/mixedmovies'
@@ -65,6 +73,15 @@ export const DataProvider = ({ children }: DataProviderProps) => {
       console.log(response);
     } catch (error) {}
   };
+
+  const deleteItemFromMyList = async (movieID: string) => {
+    const docToBeRemoved = doc(selectedMovieDataBase, 'movie-list', movieID);
+    try {
+      await deleteDoc(docToBeRemoved);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <DataContext.Provider
       value={{
@@ -73,6 +90,7 @@ export const DataProvider = ({ children }: DataProviderProps) => {
         fireStoreMovieList,
         getMovieList,
         addMovieToMyList,
+        deleteItemFromMyList,
       }}
     >
       {children}

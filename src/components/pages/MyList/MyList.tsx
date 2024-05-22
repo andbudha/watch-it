@@ -8,13 +8,19 @@ import { AuthContext } from '../../../context/AuthContext';
 import { DataContext } from '../../../context/DataContext';
 export const MyList = () => {
   const { isLoggedIn, user } = useContext(AuthContext);
-  const { fireStoreMovieList } = useContext(DataContext);
-  useEffect(() => {}, [fireStoreMovieList]);
+  const { fireStoreMovieList, getMovieList, deleteItemFromMyList } =
+    useContext(DataContext);
+
   console.log(fireStoreMovieList);
   console.log(user?.userID);
   const filteredList = fireStoreMovieList?.filter(
     (movie) => movie.userID === user?.userID
   );
+
+  const removeMovieHandler = (movieID: string) => {
+    deleteItemFromMyList(movieID);
+    getMovieList();
+  };
   if (!isLoggedIn) {
     return <Navigate to={'/'} />;
   }
@@ -42,7 +48,10 @@ export const MyList = () => {
                   </h4>
                 </div>
                 <div className={styles.list_item_icon_box}>
-                  <AiFillDelete className={styles.list_item_icon} />
+                  <AiFillDelete
+                    className={styles.list_item_icon}
+                    onClick={() => removeMovieHandler(movie.id)}
+                  />
                 </div>
               </div>
             );
