@@ -11,8 +11,6 @@ export const MyList = () => {
   const { fireStoreMovieList, getMovieList, deleteItemFromMyList } =
     useContext(DataContext);
 
-  console.log(fireStoreMovieList);
-  console.log(user?.userID);
   const filteredList = fireStoreMovieList?.filter(
     (movie) => movie.userID === user?.userID
   );
