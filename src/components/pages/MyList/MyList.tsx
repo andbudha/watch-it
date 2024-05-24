@@ -3,13 +3,14 @@ import styles from './MyList.module.scss';
 import { AiFillDelete } from 'react-icons/ai';
 
 import { IoChevronBack } from 'react-icons/io5';
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import { AuthContext } from '../../../context/AuthContext';
 import { DataContext } from '../../../context/DataContext';
 export const MyList = () => {
   const { isLoggedIn, user } = useContext(AuthContext);
   const { fireStoreMovieList, getMovieList, deleteItemFromMyList } =
     useContext(DataContext);
+  console.log(isLoggedIn);
 
   const filteredList = fireStoreMovieList?.filter(
     (movie) => movie.userID === user?.userID
@@ -19,7 +20,7 @@ export const MyList = () => {
     deleteItemFromMyList(movieID);
     getMovieList();
   };
-  if (!isLoggedIn) {
+  if (!user) {
     return <Navigate to={'/'} />;
   }
   return (

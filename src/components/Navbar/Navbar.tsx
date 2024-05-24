@@ -7,7 +7,7 @@ import { useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 
 export const Navbar = () => {
-  const { isLoggedIn, logOutUser } = useContext(AuthContext);
+  const { logOutUser, user } = useContext(AuthContext);
 
   const logOutHandler = () => {
     logOutUser();
@@ -22,7 +22,7 @@ export const Navbar = () => {
         </div>
       </NavLink>
       <div className={styles.links_box}>
-        {!isLoggedIn ? (
+        {!user ? (
           <div className={styles.auth_box}>
             <NavLink to={'login'} className={styles.login_button_box}>
               <span className={styles.link_text}>login</span>
@@ -36,7 +36,7 @@ export const Navbar = () => {
         ) : (
           <div className={styles.nav_box}>
             <NavLink to={'mylist'} className={styles.my_list_link_main_box}>
-              {isLoggedIn && (
+              {user && (
                 <div className={styles.my_list_link_box}>
                   {' '}
                   <span className={styles.link_text}>my list</span>
