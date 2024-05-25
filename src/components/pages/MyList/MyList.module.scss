@@ -37,12 +37,11 @@
       .list_item_detail_box {
         // border: 1px solid;
         height: 100px;
-        min-width: 200px;
-        // font-style: oblique;
+        max-width: 300px;
         @include flexBox(nowrap, column, center, start);
         .title,
         .year {
-          font-weight: 500;
+          font-weight: 400;
         }
       }
       .list_item_icon_box {
