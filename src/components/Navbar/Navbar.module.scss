@@ -68,6 +68,21 @@
         font-style: oblique;
         font-weight: 500;
       }
+
+      .number_of_items_in_mylist_box {
+        border: 1px solid;
+        height: 24px;
+        min-width: 24px;
+        border-radius: 13px;
+        margin: 0 4px;
+        color: #fff;
+        background-color: $font_secondary_color;
+        @include flexBox(nowrap, row, center, center);
+
+        .my_list_length {
+          font-weight: 600;
+        }
+      }
       .login_icon,
       .signin_icon,
       .list_icon,

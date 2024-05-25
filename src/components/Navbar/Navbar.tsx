@@ -3,12 +3,21 @@ import styles from './Navbar.module.scss';
 import { CiViewList, CiLogin, CiLogout } from 'react-icons/ci';
 import { RiMovie2Line } from 'react-icons/ri';
 import { RiAccountBoxLine } from 'react-icons/ri';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { AuthContext } from '../../context/AuthContext';
+import { DataContext } from '../../context/DataContext';
 
 export const Navbar = () => {
   const { logOutUser, user } = useContext(AuthContext);
+  const { usersCollection, getUsers } = useContext(DataContext);
 
+  const currentUserList = usersCollection?.find(
+    (collectionUser) => collectionUser.id === user?.userID
+  )?.movieList;
+
+  useEffect(() => {
+    getUsers();
+  }, []);
   const logOutHandler = () => {
     logOutUser();
   };
@@ -40,7 +49,16 @@ export const Navbar = () => {
                 <div className={styles.my_list_link_box}>
                   {' '}
                   <span className={styles.link_text}>my list</span>
-                  <CiViewList className={styles.list_icon} />
+                  {currentUserList?.length ? (
+                    <div className={styles.number_of_items_in_mylist_box}>
+                      {' '}
+                      <span className={styles.my_list_length}>
+                        {currentUserList.length}
+                      </span>
+                    </div>
+                  ) : (
+                    <CiViewList className={styles.list_icon} />
+                  )}
                 </div>
               )}
             </NavLink>
