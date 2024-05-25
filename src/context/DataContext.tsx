@@ -3,9 +3,9 @@ import { Movies } from '../assets/types/common_types';
 import { auth, dataBase } from '../config/firebase';
 import {
   DocumentReference,
+  arrayRemove,
   arrayUnion,
   collection,
-  deleteDoc,
   doc,
   getDocs,
   updateDoc,
@@ -25,7 +25,7 @@ type DataContextType = {
   movies: Movies | null;
   fetchMovies: () => Promise<void>;
   addMovieToMyList: (newMovie: MovieToAddType) => Promise<void>;
-  deleteItemFromMyList: (movieID: string) => Promise<void>;
+  removeMovieFromMyList: (movie: MovieToAddType) => Promise<void>;
 };
 
 type CollectionUser = {
@@ -42,7 +42,7 @@ const initialDataContextState = {
   movies: [] as Movies,
   fetchMovies: () => Promise.resolve(),
   addMovieToMyList: () => Promise.resolve(),
-  deleteItemFromMyList: () => Promise.resolve(),
+  removeMovieFromMyList: () => Promise.resolve(),
 } as DataContextType;
 
 export const DataContext = createContext(initialDataContextState);
@@ -93,13 +93,12 @@ export const DataProvider = ({ children }: DataProviderProps) => {
     } catch (error) {}
   };
 
-  const deleteItemFromMyList = async (movieID: string) => {
-    const docToBeRemoved = doc(dataBase, 'movie-list', movieID);
+  const removeMovieFromMyList = async (movie: MovieToAddType) => {
     try {
-      await deleteDoc(docToBeRemoved);
-    } catch (error) {
-      console.log(error);
-    }
+      await updateDoc(movieListRef, {
+        movieList: arrayRemove(movie),
+      });
+    } catch (error) {}
   };
 
   return (
@@ -110,7 +109,7 @@ export const DataProvider = ({ children }: DataProviderProps) => {
         fetchMovies,
         movies,
         addMovieToMyList,
-        deleteItemFromMyList,
+        removeMovieFromMyList,
       }}
     >
       {children}

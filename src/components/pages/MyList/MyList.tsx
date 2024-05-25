@@ -3,17 +3,23 @@ import styles from './MyList.module.scss';
 import { AiFillDelete } from 'react-icons/ai';
 
 import { IoChevronBack } from 'react-icons/io5';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { AuthContext } from '../../../context/AuthContext';
 import { DataContext } from '../../../context/DataContext';
 export const MyList = () => {
-  const { isLoggedIn, user } = useContext(AuthContext);
-  const { deleteItemFromMyList, usersCollection, getUsers } =
+  type MovieToRemoveType = {
+    title?: string;
+    year?: number;
+    userID?: string;
+    thumbnail?: string;
+    id?: string;
+  };
+  const { user } = useContext(AuthContext);
+  const { removeMovieFromMyList, usersCollection, getUsers } =
     useContext(DataContext);
-  console.log(isLoggedIn);
 
-  const removeMovieHandler = (movieID: string | undefined) => {
-    deleteItemFromMyList(movieID);
+  const removeMovieHandler = (movie: MovieToRemoveType) => {
+    removeMovieFromMyList(movie);
     getUsers();
   };
 
@@ -21,8 +27,9 @@ export const MyList = () => {
     (collectionUser) => collectionUser.id === user?.userID
   )?.movieList;
 
-  console.log(currentUserList);
-
+  useEffect(() => {
+    getUsers();
+  }, []);
   if (!user) {
     return <Navigate to={'/'} />;
   }
@@ -52,7 +59,7 @@ export const MyList = () => {
                 <div className={styles.list_item_icon_box}>
                   <AiFillDelete
                     className={styles.list_item_icon}
-                    onClick={() => removeMovieHandler(movie.userID)}
+                    onClick={() => removeMovieHandler(movie)}
                   />
                 </div>
               </div>

@@ -11,12 +11,10 @@ import { PageNotFound } from './components/pages/PageNotFound/PageNotFound';
 import { Toaster } from 'react-hot-toast';
 import { MyList } from './components/pages/MyList/MyList';
 import { DataContext } from './context/DataContext';
-import { auth } from './config/firebase';
 import { AuthContext } from './context/AuthContext';
 
 function App() {
   const { getUsers, fetchMovies, movies } = useContext(DataContext);
-  console.log(auth.currentUser?.email);
   const { stayLoggedIn } = useContext(AuthContext);
   useEffect(() => {
     stayLoggedIn();
