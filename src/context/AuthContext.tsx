@@ -1,10 +1,10 @@
-import { ReactNode, createContext, useEffect, useState } from 'react';
+import { ReactNode, createContext, useState } from 'react';
 import {
   LoginValues,
   SignupValueTypes,
   UserResponse,
 } from '../assets/types/common_types';
-import { DataBase, auth } from '../config/firebase';
+import { dataBase, auth } from '../config/firebase';
 import {
   createUserWithEmailAndPassword,
   onAuthStateChanged,
@@ -14,7 +14,7 @@ import {
 import { successfulToast } from '../assets/utils/successfulToast';
 import { FirebaseError } from 'firebase/app';
 import { generateFirebaseErrorInstance } from '../assets/utils/failedToast';
-import { addDoc, collection } from 'firebase/firestore';
+import { addDoc, collection, doc, setDoc } from 'firebase/firestore';
 
 type AuthContextType = {
   isLoggedIn: boolean;
@@ -63,7 +63,6 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [signupPasswordInputValue, setSignupPasswordInputValue] =
     useState<string>('');
 
-  const usersDB = collection(DataBase, 'users');
   const registerUser = async (signUpValues: SignupValueTypes) => {
     setIsLoading(true);
     try {
@@ -72,13 +71,13 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         signUpValues.email,
         signUpValues.password
       );
-
       if (signUpResponse) {
-        await addDoc(usersDB, {
-          email: auth.currentUser?.email,
-          id: auth.currentUser?.uid,
-          movieList: [],
-        });
+        if (auth.currentUser) {
+          await setDoc(doc(dataBase, 'users', auth.currentUser.uid), {
+            email: auth.currentUser.email,
+            movieList: [],
+          });
+        }
         successfulToast('User created successfully. You can log in now.');
         setSignupEmailInputValue('');
         setSignupPasswordInputValue('');
@@ -127,6 +126,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       console.log(response);
       successfulToast('Logged out successfully!');
       setIsLoggedIn(false);
+      setUser(undefined);
     } catch (error) {
       if (error instanceof FirebaseError) {
         console.log(error);
@@ -141,18 +141,12 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         console.log(user);
-
-        setIsLoggedIn(true);
-        // ...
+        setUser({ email: user.email, userID: user.uid });
       } else {
-        setIsLoggedIn(false);
+        setUser(undefined);
       }
     });
   };
-
-  // useEffect(() => {
-  //   stayLoggedIn();
-  // }, []);
   return (
     <AuthContext.Provider
       value={{

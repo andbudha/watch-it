@@ -15,15 +15,13 @@ import { auth } from './config/firebase';
 import { AuthContext } from './context/AuthContext';
 
 function App() {
-  const { getUsers, getMovieList, fetchMovies, movies } =
-    useContext(DataContext);
+  const { getUsers, fetchMovies, movies } = useContext(DataContext);
   console.log(auth.currentUser?.email);
   const { stayLoggedIn } = useContext(AuthContext);
   useEffect(() => {
     stayLoggedIn();
     getUsers();
     fetchMovies();
-    getMovieList();
   }, []);
   return (
     <div className={styles.app_main_box}>

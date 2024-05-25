@@ -8,8 +8,7 @@ import { AuthContext } from '../../../context/AuthContext';
 import { DataContext } from '../../../context/DataContext';
 export const MyList = () => {
   const { isLoggedIn, user } = useContext(AuthContext);
-  const { fireStoreMovieList, getMovieList, deleteItemFromMyList } =
-    useContext(DataContext);
+  const { fireStoreMovieList, deleteItemFromMyList } = useContext(DataContext);
   console.log(isLoggedIn);
 
   const filteredList = fireStoreMovieList?.filter(
@@ -18,7 +17,6 @@ export const MyList = () => {
 
   const removeMovieHandler = (movieID: string) => {
     deleteItemFromMyList(movieID);
-    getMovieList();
   };
   if (!user) {
     return <Navigate to={'/'} />;
