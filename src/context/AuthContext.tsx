@@ -14,7 +14,7 @@ import {
 import { successfulToast } from '../assets/utils/successfulToast';
 import { FirebaseError } from 'firebase/app';
 import { generateFirebaseErrorInstance } from '../assets/utils/failedToast';
-import { addDoc, collection, doc, setDoc } from 'firebase/firestore';
+import { doc, setDoc } from 'firebase/firestore';
 
 type AuthContextType = {
   isLoggedIn: boolean;
@@ -140,7 +140,6 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const stayLoggedIn = () => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        console.log(user);
         setUser({ email: user.email, userID: user.uid });
       } else {
         setUser(undefined);

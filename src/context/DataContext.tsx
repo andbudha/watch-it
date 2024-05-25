@@ -1,5 +1,5 @@
 import { ReactNode, createContext, useState } from 'react';
-import { ListMovieType, Movies } from '../assets/types/common_types';
+import { Movies } from '../assets/types/common_types';
 import { auth, dataBase } from '../config/firebase';
 import {
   DocumentReference,
@@ -12,34 +12,32 @@ import {
 } from 'firebase/firestore';
 import axios from 'axios';
 
-type NewMovieToAddType = {
+type MovieToAddType = {
   title?: string;
   year?: number;
   userID?: string;
+  thumbnail?: string;
+  id?: string;
 };
 type DataContextType = {
-  usersCollection: UsersCollectionType[] | null;
-  fireStoreMovieList: ListMovieType[] | null;
+  usersCollection: CollectionUser[] | null;
   getUsers: () => Promise<void>;
   movies: Movies | null;
   fetchMovies: () => Promise<void>;
-  addMovieToMyList: (newMovie: NewMovieToAddType) => Promise<void>;
+  addMovieToMyList: (newMovie: MovieToAddType) => Promise<void>;
   deleteItemFromMyList: (movieID: string) => Promise<void>;
 };
 
 type CollectionUser = {
   email: string;
   id: string;
-  movieList: NewMovieToAddType[];
+  movieList: MovieToAddType[];
 };
-type UsersCollectionType = {
-  users: CollectionUser;
-};
+
 type DataProviderProps = { children: ReactNode };
 
 const initialDataContextState = {
-  usersCollection: [] as UsersCollectionType[],
-  fireStoreMovieList: [] as ListMovieType[],
+  usersCollection: [] as CollectionUser[],
   getUsers: () => Promise.resolve(),
   movies: [] as Movies,
   fetchMovies: () => Promise.resolve(),
@@ -51,11 +49,9 @@ export const DataContext = createContext(initialDataContextState);
 
 export const DataProvider = ({ children }: DataProviderProps) => {
   const [movies, setMovies] = useState<null | Movies>(null);
-  const [fireStoreMovieList, setFireStoreMovieList] = useState<
-    null | ListMovieType[]
+  const [usersCollection, setUsersCollection] = useState<
+    CollectionUser[] | null
   >(null);
-  const [usersCollection, setUsersCollection] =
-    useState<UsersCollectionType | null>(null);
 
   // const localData = '../../data/movies.json';
   const fetchMovies = async () => {
@@ -76,9 +72,9 @@ export const DataProvider = ({ children }: DataProviderProps) => {
         ...doc.data(),
         id: doc.id,
       }));
-      console.log(data);
-      setUsersCollection(data);
-      setFireStoreMovieList(data);
+      if (data) {
+        setUsersCollection(data);
+      }
     } catch (error) {
       console.log(error);
     }
@@ -89,12 +85,11 @@ export const DataProvider = ({ children }: DataProviderProps) => {
     movieListRef = doc(dataBase, 'users', auth.currentUser.uid);
   }
 
-  const addMovieToMyList = async (newMovie: NewMovieToAddType) => {
+  const addMovieToMyList = async (newMovie: MovieToAddType) => {
     try {
-      const response = await updateDoc(movieListRef, {
+      await updateDoc(movieListRef, {
         movieList: arrayUnion(newMovie),
       });
-      console.log(response);
     } catch (error) {}
   };
 
@@ -106,6 +101,7 @@ export const DataProvider = ({ children }: DataProviderProps) => {
       console.log(error);
     }
   };
+
   return (
     <DataContext.Provider
       value={{
@@ -113,7 +109,6 @@ export const DataProvider = ({ children }: DataProviderProps) => {
         getUsers,
         fetchMovies,
         movies,
-        fireStoreMovieList,
         addMovieToMyList,
         deleteItemFromMyList,
       }}

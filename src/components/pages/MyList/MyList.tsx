@@ -8,25 +8,30 @@ import { AuthContext } from '../../../context/AuthContext';
 import { DataContext } from '../../../context/DataContext';
 export const MyList = () => {
   const { isLoggedIn, user } = useContext(AuthContext);
-  const { fireStoreMovieList, deleteItemFromMyList } = useContext(DataContext);
+  const { deleteItemFromMyList, usersCollection, getUsers } =
+    useContext(DataContext);
   console.log(isLoggedIn);
 
-  const filteredList = fireStoreMovieList?.filter(
-    (movie) => movie.userID === user?.userID
-  );
-
-  const removeMovieHandler = (movieID: string) => {
+  const removeMovieHandler = (movieID: string | undefined) => {
     deleteItemFromMyList(movieID);
+    getUsers();
   };
+
+  const currentUserList = usersCollection?.find(
+    (collectionUser) => collectionUser.id === user?.userID
+  )?.movieList;
+
+  console.log(currentUserList);
+
   if (!user) {
     return <Navigate to={'/'} />;
   }
   return (
     <div className={styles.mylist_main_box}>
       <div className={styles.mylist_box}>
-        {!!filteredList?.length && <h2>Movies to watch:</h2>}
-        {filteredList?.length ? (
-          filteredList.map((movie) => {
+        {!!currentUserList?.length && <h2>Movies to watch:</h2>}
+        {currentUserList?.length ? (
+          currentUserList.map((movie) => {
             return (
               <div className={styles.list_item_box} key={movie.id}>
                 <div className={styles.list_item_img_box}>
@@ -47,7 +52,7 @@ export const MyList = () => {
                 <div className={styles.list_item_icon_box}>
                   <AiFillDelete
                     className={styles.list_item_icon}
-                    onClick={() => removeMovieHandler(movie.id)}
+                    onClick={() => removeMovieHandler(movie.userID)}
                   />
                 </div>
               </div>
@@ -65,10 +70,12 @@ export const MyList = () => {
             </NavLink>
           </div>
         )}
-        {!!filteredList?.length && (
+        {!!currentUserList?.length && (
           <div className={styles.total_amount_box}>
             <h4>Total:</h4>
-            <span className={styles.total_amount}>{filteredList?.length}</span>
+            <span className={styles.total_amount}>
+              {currentUserList?.length}
+            </span>
           </div>
         )}
       </div>

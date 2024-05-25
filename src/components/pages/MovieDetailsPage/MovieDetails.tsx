@@ -11,7 +11,7 @@ type MovieProps = {
 export const MovieDetails = ({ movies }: MovieProps) => {
   const { movieID } = useParams();
   const { user } = useContext(AuthContext);
-  const { addMovieToMyList } = useContext(DataContext);
+  const { addMovieToMyList, getUsers } = useContext(DataContext);
   const movie = movies?.find((movie) => movie.title === movieID);
   const castList = movie?.cast.splice(0, 5).join(', ');
   const genreList = movie?.genres.join(', ');
@@ -22,9 +22,11 @@ export const MovieDetails = ({ movies }: MovieProps) => {
       year: movie?.year,
       userID: user?.userID,
       thumbnail: movie?.thumbnail,
+      id: movie?.title,
     };
     console.log(movieToAdd);
     addMovieToMyList(movieToAdd);
+    getUsers();
   };
 
   return (
