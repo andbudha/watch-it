@@ -57,32 +57,41 @@ export const MovieDetails = ({ movies }: MovieProps) => {
           <div className={styles.title_box}>
             <h3 className={styles.movie_details_header}>
               Title:{' '}
-              <span className={styles.movie_details}>{movie?.title}</span>
+              <span className={styles.movie_details}>
+                {movie?.title ? movie.title : 'Missing...'}
+              </span>
             </h3>
           </div>
           <div className={styles.genre_box}>
             <h3 className={styles.movie_details_header}>
-              Genre: <span className={styles.movie_details}>{genreList}</span>
+              Genre:{' '}
+              <span className={styles.movie_details}>
+                {genreList?.length ? genreList : 'Missing...'}
+              </span>
             </h3>
           </div>
           <div className={styles.release_year_box}>
             <h3 className={styles.movie_details_header}>
               Release Year:{' '}
-              <span className={styles.movie_details}>{movie?.year}</span>
+              <span className={styles.movie_details}>
+                {movie?.year ? movie.year : 'Missing...'}
+              </span>
             </h3>
           </div>
           <div className={styles.cast_box}>
             <h3 className={styles.movie_details_header}>
               Cast:{' '}
               <span className={styles.movie_details}>
-                {castList?.length ? castList : 'Unknown'}
+                {castList?.length ? castList : 'Missing...'}
               </span>
             </h3>
           </div>
           <div className={styles.story_box}>
             <h3 className={styles.movie_details_header}>
               Story:{' '}
-              <span className={styles.movie_details}>{movie?.extract}</span>
+              <span className={styles.movie_details}>
+                {movie?.extract ? movie.extract : 'Missing...'}
+              </span>
             </h3>
           </div>
         </div>
