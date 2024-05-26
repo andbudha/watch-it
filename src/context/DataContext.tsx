@@ -53,13 +53,13 @@ export const DataProvider = ({ children }: DataProviderProps) => {
     CollectionUser[] | null
   >(null);
 
-  // const localData = '../../data/movies.json';
+  // const localData = '../../data/movieswithid.json';
   const fetchMovies = async () => {
     const response = await axios.get<Movies>(
       'https://5b81e3264853b358.mokky.dev/mixedmovies'
     );
     if (response) {
-      setMovies(response.data.slice(0, 10));
+      setMovies(response.data);
     }
   };
 

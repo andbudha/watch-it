@@ -92,7 +92,7 @@
       padding: 10px;
       margin: 10px;
       line-height: 1.6;
-      @include flexBox(nowrap, column, start, start);
+      @include flexBox(nowrap, column, center, start);
       .movie_details_header {
         font-weight: 700;
         color: $font_primary_color;

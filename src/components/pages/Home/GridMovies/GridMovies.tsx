@@ -8,7 +8,7 @@ type GridMoviesProps = {
 export const GridMovies = ({ movies }: GridMoviesProps) => {
   const movieList = movies?.map((movie) => {
     return (
-      <div key={movie.title}>
+      <div key={movie.id}>
         <MovieCard movie={movie} movies={movies} />
       </div>
     );
