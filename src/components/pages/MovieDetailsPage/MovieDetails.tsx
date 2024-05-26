@@ -1,19 +1,15 @@
 import { NavLink, useParams } from 'react-router-dom';
 import styles from './MovieDetails.module.scss';
-import { Movie } from '../../../assets/types/common_types';
 import { useContext } from 'react';
 import { AuthContext } from '../../../context/AuthContext';
 import { DataContext } from '../../../context/DataContext';
 import { IoChevronBack } from 'react-icons/io5';
 
-type MovieProps = {
-  movies: Movie[] | null;
-};
-export const MovieDetails = ({ movies }: MovieProps) => {
+export const MovieDetails = () => {
   const { movieID } = useParams();
   const { user } = useContext(AuthContext);
-  const { addMovieToMyList, getUsers } = useContext(DataContext);
-  const movie = movies?.find((movie) => movie.title === movieID);
+  const { addMovieToMyList, getUsers, movies } = useContext(DataContext);
+  const movie = movies?.find((movie) => movie.id === movieID);
   const castList = movie?.cast.splice(0, 5).join(', ');
   const genreList = movie?.genres.join(', ');
 
@@ -23,7 +19,7 @@ export const MovieDetails = ({ movies }: MovieProps) => {
       year: movie?.year,
       userID: user?.userID,
       thumbnail: movie?.thumbnail,
-      id: movie?.title,
+      id: movie?.id,
     };
     addMovieToMyList(movieToAdd);
     getUsers();

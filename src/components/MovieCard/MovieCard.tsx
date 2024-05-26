@@ -8,7 +8,7 @@ type MovieCardProps = {
 export const MovieCard = ({ movie }: MovieCardProps) => {
   return (
     <div className={styles.movie_card_main_box}>
-      <NavLink to={`/movies/movie/${movie.title}`}>
+      <NavLink to={`/movies/movie/${movie.id}`}>
         <img
           className={styles.movie_card_img}
           src={movie.thumbnail}

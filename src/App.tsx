@@ -14,7 +14,7 @@ import { DataContext } from './context/DataContext';
 import { AuthContext } from './context/AuthContext';
 
 function App() {
-  const { getUsers, fetchMovies, movies } = useContext(DataContext);
+  const { getUsers, fetchMovies } = useContext(DataContext);
   const { stayLoggedIn } = useContext(AuthContext);
   useEffect(() => {
     stayLoggedIn();
@@ -27,13 +27,10 @@ function App() {
       <div className={styles.app_box}>
         <Routes>
           <Route path="/" element={<Layout />}>
-            <Route index element={<Home movies={movies} />} />
+            <Route index element={<Home />} />
             <Route index path="movies" element={<GridMovies />} />
             <Route index path="mylist" element={<MyList />} />
-            <Route
-              path="movies/movie/:movieID"
-              element={<MovieDetails movies={movies} />}
-            />
+            <Route path="movies/movie/:movieID" element={<MovieDetails />} />
             <Route path="login" element={<Login />} />
             <Route path="signup" element={<Signup />} />
             <Route path="*" element={<PageNotFound />} />

@@ -1,11 +1,10 @@
-import { Movie } from '../../../../assets/types/common_types';
+import { useContext } from 'react';
+import { DataContext } from '../../../../context/DataContext';
 import { MovieCard } from '../../../MovieCard/MovieCard';
 import styles from './GridMovies.module.scss';
 
-type GridMoviesProps = {
-  movies?: Movie[] | null;
-};
-export const GridMovies = ({ movies }: GridMoviesProps) => {
+export const GridMovies = () => {
+  const { movies } = useContext(DataContext);
   const movieList = movies?.map((movie) => {
     return (
       <div key={movie.id}>
