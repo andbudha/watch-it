@@ -1,14 +1,15 @@
-import { useContext } from 'react';
-import { DataContext } from '../../../../context/DataContext';
 import { MovieCard } from '../../../MovieCard/MovieCard';
 import styles from './GridMovies.module.scss';
+import { useContext } from 'react';
+import { PaginationContext } from '../../../../context/PaginationContext';
 
 export const GridMovies = () => {
-  const { movies } = useContext(DataContext);
-  const movieList = movies?.map((movie) => {
+  const { moviesToDisplayPerPage } = useContext(PaginationContext);
+
+  const movieList = moviesToDisplayPerPage?.map((movie) => {
     return (
       <div key={movie.id}>
-        <MovieCard movie={movie} movies={movies} />
+        <MovieCard movie={movie} movies={moviesToDisplayPerPage} />
       </div>
     );
   });
