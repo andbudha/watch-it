@@ -26,3 +26,25 @@
     }
   }
 }
+
+@media screen and (max-width: 768px) {
+  .movie_card_main_box {
+    height: 340px;
+    width: 240px;
+    .movie_card_img {
+      height: 320px;
+      width: 220px;
+    }
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .movie_card_main_box {
+    height: 400px;
+    width: 280px;
+    .movie_card_img {
+      height: 390px;
+      width: 260px;
+    }
+  }
+}
