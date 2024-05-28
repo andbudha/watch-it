@@ -12,6 +12,7 @@ import { Toaster } from 'react-hot-toast';
 import { MyList } from './components/pages/MyList/MyList';
 import { DataContext } from './context/DataContext';
 import { AuthContext } from './context/AuthContext';
+import { BurgerMenu } from './components/Navbar/BurgerMenu/BurgerMenu';
 
 function App() {
   const { getUsers, fetchMovies } = useContext(DataContext);
@@ -25,6 +26,7 @@ function App() {
     <div className={styles.app_main_box}>
       <Toaster />
       <div className={styles.app_box}>
+        <BurgerMenu />
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />

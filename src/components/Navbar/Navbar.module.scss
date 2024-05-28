@@ -2,6 +2,7 @@
 @import '../../assets/sass/mixins.scss';
 
 .nav_main_box {
+  position: relative;
   height: 100px;
   width: 100%;
   padding: 16px;
@@ -35,6 +36,7 @@
     }
   }
   .links_box {
+    display: none;
     height: 40px;
     width: 240px;
     @include flexBox(nowrap, row, space-between, center);
@@ -96,6 +98,10 @@
         width: 100%;
         @include flexBox(nowrap, row, center, center);
       }
+    }
+
+    @media screen and (max-width: 520px) {
+      display: none;
     }
   }
 }

@@ -1,0 +1,59 @@
+@import '../../../assets/sass/mixins.scss';
+@import '../../../assets/sass/variables.scss';
+
+.burger_menu_main_box {
+  height: 5px;
+  width: 100%;
+  position: absolute;
+  z-index: 2;
+  opacity: 0.9;
+  background-color: none;
+  margin: 0 auto;
+  @include flexBox(nowrap, row, center, start);
+  .dropped_burger_menu_box {
+    // border: 1px solid $font_secondary_color;
+    background-color: #e3dffd;
+    box-shadow: $shadow_color 0px 2px 20px 0px,
+      rgba(0, 0, 0, 0.06) 0px 0px 0px 0px;
+    width: 240px;
+    height: 260px;
+    border-radius: 0 0 8px 8px;
+    transform: translate(0, 0);
+    transition: 0.55s;
+    @include flexBox(nowrap, column, space-evenly, center);
+  }
+  .hidden_burger_menu_box {
+    // border: 1px solid $font_secondary_color;
+    background-color: #e3dffd;
+    box-shadow: $shadow_color 0px 2px 20px 0px,
+      rgba(0, 0, 0, 0.06) 0px 0px 0px 0px;
+    width: 240px;
+    height: 260px;
+    border-radius: 0 0 8px 8px;
+    @include flexBox(nowrap, column, space-evenly, center);
+    transform: translate(0, -280px);
+    transition: 0.55s;
+  }
+  .burger_button_box {
+    height: 40px;
+    width: 50px;
+    position: absolute;
+    z-index: 20;
+    top: 26px;
+    right: 14px;
+    @include flexBox(nowrap, row, center, center);
+
+    .burger_icon_button {
+      height: 40px;
+      width: 40px;
+      font-weight: 600;
+      transition: 1s;
+      color: $font_secondary_color;
+      cursor: pointer;
+    }
+
+    @media screen and (min-width: 520px) {
+      display: none;
+    }
+  }
+}
