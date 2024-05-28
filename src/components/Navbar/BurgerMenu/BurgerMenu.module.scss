@@ -42,7 +42,6 @@
     top: 26px;
     right: 14px;
     @include flexBox(nowrap, row, center, center);
-
     .burger_icon_button {
       height: 40px;
       width: 40px;
@@ -51,8 +50,7 @@
       color: $font_secondary_color;
       cursor: pointer;
     }
-
-    @media screen and (min-width: 520px) {
+    @media screen and (min-width: 521px) {
       display: none;
     }
   }
