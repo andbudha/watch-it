@@ -1,8 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import styles from './Navbar.module.scss';
-import { CiViewList, CiLogin, CiLogout } from 'react-icons/ci';
+import { CiViewList, CiLogin, CiLogout, CiUser } from 'react-icons/ci';
 import { RiMovie2Line } from 'react-icons/ri';
-import { RiAccountBoxLine } from 'react-icons/ri';
 import { useContext, useEffect } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 import { DataContext } from '../../context/DataContext';
@@ -39,7 +38,7 @@ export const Navbar = () => {
             </NavLink>
             <NavLink to={'signup'} className={styles.signin_button_box}>
               <span className={styles.link_text}>signup</span>
-              <RiAccountBoxLine className={styles.signin_icon} />
+              <CiUser className={styles.signin_icon} />
             </NavLink>
           </div>
         ) : (
