@@ -32,18 +32,42 @@ export const Navbar = () => {
       <div className={styles.links_box}>
         {!user ? (
           <div className={styles.auth_box}>
-            <NavLink to={'login'} className={styles.login_button_box}>
+            <NavLink
+              to={'login'}
+              className={styles.login_button_box}
+              style={({ isActive }) => ({
+                background: isActive ? '#864af9' : '',
+                color: isActive ? '#fff' : '',
+                border: isActive ? '2px solid #864af9' : '',
+              })}
+            >
               <span className={styles.link_text}>login</span>
               <CiLogin className={styles.login_icon} />
             </NavLink>
-            <NavLink to={'signup'} className={styles.signin_button_box}>
+            <NavLink
+              to={'signup'}
+              className={styles.signin_button_box}
+              style={({ isActive }) => ({
+                background: isActive ? '#864af9' : '',
+                color: isActive ? '#fff' : '',
+                border: isActive ? '2px solid #864af9' : '',
+              })}
+            >
               <span className={styles.link_text}>signup</span>
               <CiUser className={styles.signin_icon} />
             </NavLink>
           </div>
         ) : (
           <div className={styles.nav_box}>
-            <NavLink to={'mylist'} className={styles.my_list_link_main_box}>
+            <NavLink
+              to={'mylist'}
+              className={styles.my_list_link_main_box}
+              style={({ isActive }) => ({
+                background: isActive ? '#864af9' : '',
+                color: isActive ? '#fff' : '',
+                border: isActive ? '2px solid #864af9' : '',
+              })}
+            >
               {user && (
                 <div className={styles.my_list_link_box}>
                   {' '}
