@@ -2,11 +2,10 @@
 @import '../../../assets/sass/variables.scss';
 
 .burger_menu_main_box {
-  height: 5px;
+  height: 0;
   width: 100%;
   position: absolute;
-  z-index: 2;
-  opacity: 0.9;
+  z-index: 10;
   background-color: none;
   margin: 0 auto;
   @include flexBox(nowrap, row, center, start);
@@ -19,7 +18,7 @@
     border-radius: 0 0 8px 8px;
     transform: translate(0, 0);
     transition: 0.55s;
-    @include flexBox(nowrap, column, space-evenly, center);
+    @include flexBox(nowrap, column, center, center);
     .auth_box,
     .nav_box {
       // border: 1px solid;
@@ -36,7 +35,6 @@
         &:not(:last-child) {
           border-bottom: 1px solid $font_secondary_color;
         }
-
         .link_text {
           color: $font_secondary_color;
           font-weight: 500;
@@ -131,7 +129,7 @@
     .burger_icon_button {
       height: 32px;
       width: 32px;
-      font-weight: 600;
+      font-weight: 500;
       transition: 1s;
       color: $font_secondary_color;
       cursor: pointer;
