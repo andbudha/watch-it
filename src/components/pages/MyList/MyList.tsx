@@ -52,10 +52,12 @@ export const MyList = () => {
                 </div>
                 <div className={styles.list_item_detail_box}>
                   <h4 className={styles.list_item_title}>
-                    Title: <span className={styles.title}>{movie.title}</span>
+                    <div>Title:</div>{' '}
+                    <div className={styles.title}>{movie.title}</div>
                   </h4>
                   <h4 className={styles.list_item_year}>
-                    Year: <span className={styles.year}>{movie.year}</span>
+                    <div>Year:</div>
+                    <div className={styles.year}>{movie.year}</div>
                   </h4>
                 </div>
                 <div className={styles.list_item_icon_box}>

@@ -60,10 +60,14 @@
         min-height: 100px;
         width: 180px;
         margin: 20px 0;
-        @include flexBox(nowrap, column, center, start);
+        @include flexBox(nowrap, column, center, center);
         @media screen and (max-width: 700px) {
           min-height: 50px;
           min-width: 100px;
+        }
+        .list_item_title,
+        .list_item_year {
+          @include flexBox(nowrap, column, center, center);
         }
         .title,
         .year {
@@ -71,8 +75,10 @@
         }
       }
       .list_item_icon_box {
-        height: 30px;
-        width: 30px;
+        border: 1px solid $font_secondary_color;
+        height: 50px;
+        width: 50px;
+        border-radius: 25px;
         @include flexBox(nowrap, column, center, center);
         .list_item_icon {
           height: 22px;
