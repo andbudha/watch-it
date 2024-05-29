@@ -69,7 +69,7 @@ export const DataProvider = ({ children }: DataProviderProps) => {
     try {
       const response = await getDocs(usersList);
       const data = response.docs.map((doc) => ({
-        ...doc.data(),
+        ...(doc.data() as CollectionUser),
         id: doc.id,
       }));
       if (data) {
