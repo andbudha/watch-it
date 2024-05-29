@@ -11,28 +11,114 @@
   margin: 0 auto;
   @include flexBox(nowrap, row, center, start);
   .dropped_burger_menu_box {
-    // border: 1px solid $font_secondary_color;
     background-color: #e3dffd;
     box-shadow: $shadow_color 0px 2px 20px 0px,
       rgba(0, 0, 0, 0.06) 0px 0px 0px 0px;
-    width: 240px;
-    height: 260px;
+    width: 220px;
+    height: 240px;
     border-radius: 0 0 8px 8px;
     transform: translate(0, 0);
     transition: 0.55s;
     @include flexBox(nowrap, column, space-evenly, center);
+    .auth_box,
+    .nav_box {
+      // border: 1px solid;
+      padding: 10px;
+      min-height: 100px;
+      width: 140px;
+      @include flexBox(nowrap, column, space-around, start);
+      .burger_menu_button_box {
+        width: 100%;
+        padding: 6px 0;
+        margin: 6px 0;
+        text-decoration: none;
+        @include flexBox(nowrap, row, space-between, center);
+        &:not(:last-child) {
+          border-bottom: 1px solid $font_secondary_color;
+        }
+
+        .link_text {
+          color: $font_secondary_color;
+          font-weight: 500;
+          letter-spacing: 1px;
+        }
+        .burger_menu_icon {
+          color: $font_secondary_color;
+          height: 24px;
+          width: 24px;
+        }
+        .number_of_items_in_mylist_box {
+          height: 24px;
+          min-width: 24px;
+          border-radius: 12px;
+          color: #fff;
+          background-color: $font_secondary_color;
+          @include flexBox(nowrap, row, space-around, center);
+          .my_list_length {
+            font-weight: 600;
+          }
+        }
+      }
+      // .active {
+      //   border: 2px solid darkblue;
+      // }
+    }
+    @media screen and (min-width: 521px) {
+      display: none;
+    }
   }
   .hidden_burger_menu_box {
-    // border: 1px solid $font_secondary_color;
     background-color: #e3dffd;
     box-shadow: $shadow_color 0px 2px 20px 0px,
       rgba(0, 0, 0, 0.06) 0px 0px 0px 0px;
-    width: 240px;
-    height: 260px;
+    width: 220px;
+    height: 240px;
     border-radius: 0 0 8px 8px;
-    @include flexBox(nowrap, column, space-evenly, center);
     transform: translate(0, -280px);
     transition: 0.55s;
+    @include flexBox(nowrap, column, space-evenly, center);
+    .auth_box,
+    .nav_box {
+      padding: 10px;
+      min-height: 100px;
+      width: 140px;
+      @include flexBox(nowrap, column, space-around, start);
+      .burger_menu_button_box {
+        width: 100%;
+        padding: 6px 0;
+        margin: 6px 0;
+        text-decoration: none;
+        @include flexBox(nowrap, row, space-between, center);
+        &:not(:last-child) {
+          border-bottom: 1px solid $font_secondary_color;
+        }
+        .link_text {
+          color: $font_secondary_color;
+          font-weight: 500;
+          letter-spacing: 1px;
+        }
+        .burger_menu_icon {
+          color: $font_secondary_color;
+          height: 24px;
+          width: 24px;
+        }
+        .number_of_items_in_mylist_box {
+          height: 24px;
+          min-width: 24px;
+          border-radius: 12px;
+          color: #fff;
+          background-color: $font_secondary_color;
+          @include flexBox(nowrap, row, space-around, center);
+
+          .my_list_length {
+            font-weight: 600;
+          }
+        }
+      }
+      // .active {
+      //   border: 2px solid darkblue;
+      // }
+    }
   }
   .burger_button_box {
     height: 40px;
@@ -43,8 +129,8 @@
     right: 14px;
     @include flexBox(nowrap, row, center, center);
     .burger_icon_button {
-      height: 40px;
-      width: 40px;
+      height: 32px;
+      width: 32px;
       font-weight: 600;
       transition: 1s;
       color: $font_secondary_color;
