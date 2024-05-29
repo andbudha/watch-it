@@ -37,12 +37,14 @@ export const MovieDetails = () => {
               alt={`movie poster`}
             />
           </div>
-          <div
-            className={styles.add_movie_button}
-            onClick={addMovieToMyListHandler}
-          >
-            add to my list
-          </div>
+          {!!user && (
+            <div
+              className={styles.add_movie_button}
+              onClick={addMovieToMyListHandler}
+            >
+              add to my list
+            </div>
+          )}
           <NavLink className={styles.home_button} to={'/'}>
             {' '}
             <IoChevronBack className={styles.chevron_icon} />
