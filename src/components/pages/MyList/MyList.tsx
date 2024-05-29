@@ -36,7 +36,9 @@ export const MyList = () => {
   return (
     <div className={styles.mylist_main_box}>
       <div className={styles.mylist_box}>
-        {!!currentUserList?.length && <h2>Movies to watch:</h2>}
+        {!!currentUserList?.length && (
+          <h2 className={styles.my_list_title}>Movies to watch:</h2>
+        )}
         {currentUserList?.length ? (
           currentUserList.map((movie) => {
             return (
@@ -68,8 +70,9 @@ export const MyList = () => {
         ) : (
           <div className={styles.mylist_info_box}>
             {' '}
-            <h1>This List Is Currently Empty</h1>
-            <h2>Add movies to your list</h2>
+            <h1>List</h1>
+            <h1>Currently Empty</h1>
+            <h2>Add Movies To Your List</h2>
             <NavLink className={styles.grid_movies_button} to={'/'}>
               {' '}
               <IoChevronBack className={styles.chevron_icon} />

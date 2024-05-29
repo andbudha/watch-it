@@ -14,38 +14,63 @@
   .mylist_box {
     // border: 1px solid;
     min-height: 100%;
-    width: 100%;
+    max-width: 100%;
     @include flexBox(nowrap, column, center, center);
+
+    .mylist_info_box {
+      border: 1px solid;
+      max-width: 400px;
+      height: 300px;
+      @include flexBox(flex, column, center, center);
+    }
+    .my_list_title {
+      margin: 10px 0 20px 0;
+    }
     .list_item_box {
-      border-bottom: 2px solid;
-      width: 700px;
-      height: 150px;
-      padding: 10px;
+      border-bottom: 1px solid $font_secondary_color;
+      width: 600px;
+      min-height: 150px;
+      padding: 20px;
       margin-bottom: 10px;
       @include flexBox(nowrap, row, space-between, center);
+      @media screen and (max-width: 700px) {
+        max-width: 320px;
+        @include flexBox(nowrap, column, space-between, center);
+      }
       .list_item_img_box {
-        // border: 1px solid;
         border-radius: 5px;
-        height: 130px;
-        width: 90px;
+        height: 160px;
+        width: 110px;
+        @media screen and (max-width: 700px) {
+          height: 260px;
+          width: 170px;
+        }
         .list_item_img {
           border-radius: 5px;
-          height: 130px;
-          width: 90px;
+          height: 160px;
+          width: 110px;
+          @media screen and (max-width: 700px) {
+            height: 260px;
+            width: 170px;
+          }
         }
       }
       .list_item_detail_box {
-        // border: 1px solid;
-        height: 100px;
-        max-width: 300px;
+        padding: 10px;
+        min-height: 100px;
+        width: 180px;
+        margin: 20px 0;
         @include flexBox(nowrap, column, center, start);
+        @media screen and (max-width: 700px) {
+          min-height: 50px;
+          min-width: 100px;
+        }
         .title,
         .year {
           font-weight: 400;
         }
       }
       .list_item_icon_box {
-        // border: 1px solid;
         height: 30px;
         width: 30px;
         @include flexBox(nowrap, column, center, center);
@@ -99,14 +124,16 @@
     }
   }
   .total_amount_box {
-    // border: 1px solid;
     height: 50px;
-    width: 700px;
+    width: 560px;
     padding: 5px;
     @include flexBox(nowrap, row, space-between, center);
     .total_amount {
       font-size: 1.1rem;
       font-weight: 500;
+    }
+    @media screen and (max-width: 700px) {
+      max-width: 320px;
     }
   }
 }
