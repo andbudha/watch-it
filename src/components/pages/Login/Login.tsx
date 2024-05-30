@@ -7,7 +7,7 @@ import {
 } from '../../../assets/types/common_types';
 import { useContext } from 'react';
 import { AuthContext } from '../../../context/AuthContext';
-import { Loader } from '../../Loader/Loader';
+import { Loader } from '../../Loaders/Loader';
 
 export const Login = () => {
   const { isLoggedIn, logInUser, isLoading } = useContext(AuthContext);

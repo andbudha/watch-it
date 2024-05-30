@@ -29,6 +29,7 @@ type AuthContextType = {
   setSignupPasswordInputValue: (newSignupPasswordInputValue: string) => void;
   setIsLoggedIn: (newStatus: boolean) => void;
   stayLoggedIn: () => void;
+  setIsLoading: (newLoadingStatus: boolean) => void;
 };
 
 const authInitialContextState = {
@@ -46,6 +47,9 @@ const authInitialContextState = {
   logOutUser: () => Promise.resolve(),
   setIsLoggedIn: (newStatus: boolean) => newStatus,
   stayLoggedIn: () => {
+    throw new Error('An error occurred when refreshing the app page!');
+  },
+  setIsLoading: () => {
     throw new Error('An error occurred when refreshing the app page!');
   },
 } as AuthContextType;
@@ -161,6 +165,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         setSignupPasswordInputValue,
         setIsLoggedIn,
         stayLoggedIn,
+        setIsLoading,
       }}
     >
       {children}

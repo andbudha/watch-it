@@ -6,7 +6,7 @@ import {
   SignupValueTypes,
   SignupErrorTypes,
 } from '../../../assets/types/common_types';
-import { Loader } from '../../Loader/Loader';
+import { Loader } from '../../Loaders/Loader';
 
 export const Signup = () => {
   const {

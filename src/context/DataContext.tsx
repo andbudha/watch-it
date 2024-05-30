@@ -1,4 +1,4 @@
-import { ReactNode, createContext, useState } from 'react';
+import { ReactNode, createContext, useContext, useState } from 'react';
 import { Movies } from '../assets/types/common_types';
 import { auth, dataBase } from '../config/firebase';
 import {
@@ -11,6 +11,7 @@ import {
   updateDoc,
 } from 'firebase/firestore';
 import axios from 'axios';
+import { AuthContext } from './AuthContext';
 
 type MovieToAddType = {
   title?: string;
@@ -48,6 +49,7 @@ const initialDataContextState = {
 export const DataContext = createContext(initialDataContextState);
 
 export const DataProvider = ({ children }: DataProviderProps) => {
+  const { setIsLoading } = useContext(AuthContext);
   const [movies, setMovies] = useState<null | Movies>(null);
   const [usersCollection, setUsersCollection] = useState<
     CollectionUser[] | null
@@ -94,11 +96,15 @@ export const DataProvider = ({ children }: DataProviderProps) => {
   };
 
   const removeMovieFromMyList = async (movie: MovieToAddType) => {
+    setIsLoading(true);
     try {
       await updateDoc(movieListRef, {
         movieList: arrayRemove(movie),
       });
-    } catch (error) {}
+    } catch (error) {
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (

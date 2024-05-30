@@ -6,6 +6,8 @@ import { IoChevronBack } from 'react-icons/io5';
 import { useContext, useEffect } from 'react';
 import { AuthContext } from '../../../context/AuthContext';
 import { DataContext } from '../../../context/DataContext';
+import { Loader } from '../../Loaders/Loader';
+import { MiniLoader } from '../../Loaders/MiniLoader';
 export const MyList = () => {
   type MovieToRemoveType = {
     title?: string;
@@ -14,7 +16,7 @@ export const MyList = () => {
     thumbnail?: string;
     id?: string;
   };
-  const { user } = useContext(AuthContext);
+  const { user, isLoading } = useContext(AuthContext);
   const { removeMovieFromMyList, usersCollection, getUsers } =
     useContext(DataContext);
 
@@ -61,6 +63,7 @@ export const MyList = () => {
                   </h4>
                 </div>
                 <div className={styles.list_item_icon_box}>
+                  {isLoading && <MiniLoader />}
                   <AiFillDelete
                     className={styles.list_item_icon}
                     onClick={() => removeMovieHandler(movie)}

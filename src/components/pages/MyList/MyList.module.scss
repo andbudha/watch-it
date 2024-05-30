@@ -18,7 +18,7 @@
     @include flexBox(nowrap, column, center, center);
 
     .mylist_info_box {
-      border: 1px solid;
+      // border: 1px solid;
       max-width: 400px;
       height: 300px;
       @include flexBox(flex, column, center, center);
@@ -68,13 +68,17 @@
         .list_item_title,
         .list_item_year {
           @include flexBox(nowrap, column, center, center);
-        }
-        .title,
-        .year {
-          font-weight: 400;
+          .title,
+          .year {
+            width: 100%;
+            text-align: center;
+            @include flexBox(nowrap, row, center, center);
+            font-weight: 400;
+          }
         }
       }
       .list_item_icon_box {
+        position: relative;
         border: 1px solid $font_secondary_color;
         height: 50px;
         width: 50px;
