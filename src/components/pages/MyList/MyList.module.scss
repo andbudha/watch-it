@@ -16,7 +16,6 @@
     min-height: 100%;
     max-width: 100%;
     @include flexBox(nowrap, column, center, center);
-
     .mylist_info_box {
       // border: 1px solid;
       max-width: 400px;
@@ -37,22 +36,31 @@
         max-width: 320px;
         @include flexBox(nowrap, column, space-between, center);
       }
-      .list_item_img_box {
+      .list_item_img_box,
+      .movie_card_img {
         border-radius: 5px;
         height: 160px;
         width: 110px;
-        @media screen and (max-width: 700px) {
-          height: 260px;
-          width: 170px;
-        }
-        .list_item_img {
+        .list_item_img,
+        .camera_icon_box {
           border-radius: 5px;
           height: 160px;
           width: 110px;
+          box-shadow: $shadow_color 0px 2px 10px 0px,
+            rgba(0, 0, 0, 0.06) 0px 0px 0px 0px;
+          @include flexBox(nowrap, row, center, center);
+          .camera_icon {
+            height: 50px;
+            width: 50px;
+          }
           @media screen and (max-width: 700px) {
             height: 260px;
             width: 170px;
           }
+        }
+        @media screen and (max-width: 700px) {
+          height: 260px;
+          width: 170px;
         }
       }
       .list_item_detail_box {
@@ -104,7 +112,6 @@
   .mylist_info_box {
     line-height: 2;
     @include flexBox(nowrap, column, center, center);
-
     .grid_movies_button {
       height: 40px;
       width: 120px;

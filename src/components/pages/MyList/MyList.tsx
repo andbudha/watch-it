@@ -7,6 +7,7 @@ import { useContext, useEffect } from 'react';
 import { AuthContext } from '../../../context/AuthContext';
 import { DataContext } from '../../../context/DataContext';
 import { MiniLoader } from '../../Loaders/MiniLoader';
+import { BiCameraMovie } from 'react-icons/bi';
 export const MyList = () => {
   type MovieToRemoveType = {
     title?: string;
@@ -44,13 +45,23 @@ export const MyList = () => {
           currentUserList.map((movie) => {
             return (
               <div className={styles.list_item_box} key={movie.id}>
-                <div className={styles.list_item_img_box}>
-                  <img
-                    className={styles.list_item_img}
-                    src={movie.thumbnail}
-                    alt="movie poster"
-                  />
-                </div>
+                {movie?.thumbnail ? (
+                  <div className={styles.list_item_img_box}>
+                    <img
+                      className={styles.list_item_img}
+                      src={movie.thumbnail}
+                      alt="movie poster"
+                    />
+                  </div>
+                ) : (
+                  <div className={styles.movie_card_img}>
+                    <div className={styles.camera_icon_box}>
+                      {' '}
+                      <BiCameraMovie className={styles.camera_icon} />
+                    </div>
+                  </div>
+                )}
+
                 <div className={styles.list_item_detail_box}>
                   <h4 className={styles.list_item_title}>
                     <div>Title:</div>{' '}
