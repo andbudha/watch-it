@@ -3,7 +3,7 @@ import toast from 'react-hot-toast';
 
 const toastError = (message: string) =>
   toast.error(message, {
-    duration: 5000,
+    duration: 3500,
     style: {
       border: '1px solid #ED2B2A',
       padding: '16px',
