@@ -1,6 +1,6 @@
-import styles from './Loader.module.scss';
+import styles from './MiniLoader.module.scss';
 
-export const Loader = () => {
+export const MiniLoader = () => {
   return (
     <div className={styles.loader_main_box}>
       <span className={styles.loader}></span>

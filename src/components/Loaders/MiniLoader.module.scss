@@ -5,14 +5,14 @@
   position: absolute;
   height: 100%;
   width: 100%;
-  border-radius: 12px;
+  border-radius: 50%;
   background-color: rgb(0, 0, 0); /* Fallback color */
   background-color: rgba(0, 0, 0, 0.1); /* Black w/ opacity */
   @include flexBox(nowrap, column, center, center);
 
   .loader {
-    width: 58px;
-    height: 58px;
+    width: 34px;
+    height: 34px;
     border-radius: 50%;
     position: relative;
     animation: rotate 1s linear infinite;
@@ -22,7 +22,7 @@
       position: absolute;
       inset: 0px;
       border-radius: 50%;
-      border: 7px solid $font_primary_color;
+      border: 2px solid $font_primary_color;
       animation: prixClipFix 2s linear infinite;
     }
 
