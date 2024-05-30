@@ -12,11 +12,25 @@ export const Paginator = () => {
     <div className={styles.pagination_main_box}>
       <div className={styles.pagination_box}>
         <Pagination
-          size={'large'}
+          size={'medium'}
           count={numberOfPages}
           page={currentPage}
           color="secondary"
           onChange={(_: any, pageNumber: number) => setCurrentPage(pageNumber)}
+          sx={{
+            '& .MuiPaginationItem-root': {
+              color: '#7e30e1',
+              border: '1px solid #7e30e1',
+            },
+            '& .MuiPaginationItem-root:hover': {
+              color: '#fff',
+              backgroundColor: '#7e30e1',
+            },
+            '& .Mui-selected': {
+              backgroundColor: '#7e30e1',
+              color: '#fff',
+            },
+          }}
         />
       </div>
     </div>
