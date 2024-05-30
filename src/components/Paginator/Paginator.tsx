@@ -19,17 +19,17 @@ export const Paginator = () => {
           onChange={(_: any, pageNumber: number) => setCurrentPage(pageNumber)}
           sx={{
             '& .MuiPaginationItem-root': {
-              color: '#7e30e1',
+              color: '#864af9',
               fontWeight: '500',
               fontFamily: 'Poppins',
-              border: '1px solid #7e30e1',
+              border: '1px solid #864af9',
             },
             '& .MuiPaginationItem-root:hover': {
               color: '#fff',
-              backgroundColor: '#7e30e1',
+              backgroundColor: '#ad88c6',
             },
             '& .Mui-selected': {
-              backgroundColor: '#7e30e1',
+              backgroundColor: '#864af9',
               color: '#fff',
             },
           }}
