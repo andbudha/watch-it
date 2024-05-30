@@ -8,10 +8,18 @@ import { IoChevronBack } from 'react-icons/io5';
 export const MovieDetails = () => {
   const { movieID } = useParams();
   const { user } = useContext(AuthContext);
-  const { addMovieToMyList, getUsers, movies } = useContext(DataContext);
+  const { addMovieToMyList, getUsers, movies, usersCollection } =
+    useContext(DataContext);
   const movie = movies?.find((movie) => movie.id === movieID);
   const castList = movie?.cast.splice(0, 5).join(', ');
   const genreList = movie?.genres.join(', ');
+
+  const currentUserList = usersCollection?.find(
+    (collectionUser) => collectionUser.id === user?.userID
+  )?.movieList;
+  const isInTheList = currentUserList?.find(
+    (listMovie) => listMovie.id === movie?.id
+  );
 
   const addMovieToMyListHandler = () => {
     const movieToAdd = {
@@ -38,12 +46,13 @@ export const MovieDetails = () => {
             />
           </div>
           {!!user && (
-            <div
+            <button
+              disabled={!!isInTheList}
               className={styles.add_movie_button}
               onClick={addMovieToMyListHandler}
             >
-              add to my list
-            </div>
+              {!!isInTheList ? 'already added' : 'add to my lsit'}
+            </button>
           )}
           <NavLink className={styles.home_button} to={'/'}>
             {' '}

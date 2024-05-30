@@ -6,7 +6,6 @@ import { IoChevronBack } from 'react-icons/io5';
 import { useContext, useEffect } from 'react';
 import { AuthContext } from '../../../context/AuthContext';
 import { DataContext } from '../../../context/DataContext';
-import { Loader } from '../../Loaders/Loader';
 import { MiniLoader } from '../../Loaders/MiniLoader';
 export const MyList = () => {
   type MovieToRemoveType = {
