@@ -20,6 +20,8 @@ export const Paginator = () => {
           sx={{
             '& .MuiPaginationItem-root': {
               color: '#7e30e1',
+              fontWeight: '500',
+              fontFamily: 'Poppins',
               border: '1px solid #7e30e1',
             },
             '& .MuiPaginationItem-root:hover': {
