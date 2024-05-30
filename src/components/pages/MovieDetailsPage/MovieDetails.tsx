@@ -4,6 +4,7 @@ import { useContext } from 'react';
 import { AuthContext } from '../../../context/AuthContext';
 import { DataContext } from '../../../context/DataContext';
 import { IoChevronBack } from 'react-icons/io5';
+import { BiCameraMovie } from 'react-icons/bi';
 
 export const MovieDetails = () => {
   const { movieID } = useParams();
@@ -29,7 +30,10 @@ export const MovieDetails = () => {
       thumbnail: movie?.thumbnail,
       id: movie?.id,
     };
-    addMovieToMyList(movieToAdd);
+    addMovieToMyList({
+      ...movieToAdd,
+      thumbnail: movie?.thumbnail ? movie.thumbnail : '',
+    });
     getUsers();
   };
 
@@ -39,11 +43,20 @@ export const MovieDetails = () => {
         {' '}
         <div className={styles.img_and_button_box}>
           <div className={styles.movie_img_box}>
-            <img
-              className={styles.movie_img}
-              src={movie?.thumbnail}
-              alt={`movie poster`}
-            />
+            {movie?.thumbnail ? (
+              <img
+                className={styles.movie_img}
+                src={movie?.thumbnail}
+                alt={`movie poster`}
+              />
+            ) : (
+              <div className={styles.movie_card_img}>
+                <div className={styles.camera_icon_box}>
+                  {' '}
+                  <BiCameraMovie className={styles.camera_icon} />
+                </div>
+              </div>
+            )}
           </div>
           {!!user && (
             <button

@@ -32,6 +32,24 @@
           border-radius: 12px;
           object-fit: contain;
         }
+        .movie_card_img {
+          height: 400px;
+          width: 270px;
+          border-radius: 12px;
+          box-shadow: $shadow_color 0px 2px 20px 0px,
+            rgba(0, 0, 0, 0.06) 0px 0px 0px 0px;
+          @include flexBox(nowrap, column, center, center);
+        }
+        .camera_icon_box {
+          height: 90px;
+          width: 90px;
+          @include flexBox(nowrap, row, center, center);
+          .camera_icon {
+            height: 80px;
+            width: 80px;
+            color: $font_secondary_color;
+          }
+        }
       }
       .add_movie_button {
         height: 40px;
