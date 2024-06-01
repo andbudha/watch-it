@@ -32,9 +32,6 @@
         margin: 6px 0;
         text-decoration: none;
         @include flexBox(nowrap, row, space-between, center);
-        &:not(:last-child) {
-          border-bottom: 1px solid $font_secondary_color;
-        }
         .link_text {
           color: $font_secondary_color;
           font-weight: 500;
@@ -57,9 +54,38 @@
           }
         }
       }
-      // .active {
-      //   border: 2px solid darkblue;
-      // }
+      .active {
+        border-top: 2px solid $font_secondary_color;
+        border-bottom: 2px solid $font_secondary_color;
+        width: 120px;
+        padding: 6px 0;
+        margin: 6px 0;
+        text-decoration: none;
+        @include flexBox(nowrap, row, space-around, center);
+        .link_text {
+          color: $font_secondary_color;
+          font-weight: 700;
+          letter-spacing: 2px;
+
+          text-shadow: $shadow_color;
+        }
+        .burger_menu_icon {
+          color: $font_secondary_color;
+          height: 26px;
+          width: 26px;
+        }
+        .number_of_items_in_mylist_box {
+          height: 24px;
+          min-width: 24px;
+          border-radius: 12px;
+          color: #fff;
+          background-color: $font_secondary_color;
+          @include flexBox(nowrap, row, space-around, center);
+          .my_list_length {
+            font-weight: 600;
+          }
+        }
+      }
     }
     @media screen and (min-width: 521px) {
       display: none;

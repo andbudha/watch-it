@@ -37,9 +37,9 @@ export const BurgerMenu = () => {
           <div className={styles.auth_box}>
             <NavLink
               to={'/'}
-              className={styles.burger_menu_button_box}
-              // className={`${styles.burger_menu_button_box} ${(isAtive: boolean) =>
-              //   isAtive && styles.active}`}
+              className={({ isActive }) =>
+                isActive ? styles.active : styles.burger_menu_button_box
+              }
               onClick={toggleDisplayHandler}
             >
               <span className={styles.link_text}>main</span>
@@ -47,7 +47,9 @@ export const BurgerMenu = () => {
             </NavLink>
             <NavLink
               to={'login'}
-              className={styles.burger_menu_button_box}
+              className={({ isActive }) =>
+                isActive ? styles.active : styles.burger_menu_button_box
+              }
               onClick={toggleDisplayHandler}
             >
               <span className={styles.link_text}>login</span>
@@ -55,7 +57,9 @@ export const BurgerMenu = () => {
             </NavLink>
             <NavLink
               to={'signup'}
-              className={styles.burger_menu_button_box}
+              className={({ isActive }) =>
+                isActive ? styles.active : styles.burger_menu_button_box
+              }
               onClick={toggleDisplayHandler}
             >
               <span className={styles.link_text}>signup</span>
@@ -66,9 +70,9 @@ export const BurgerMenu = () => {
           <div className={styles.nav_box}>
             <NavLink
               to={'/'}
-              className={styles.burger_menu_button_box}
-              // className={`${styles.burger_menu_button_box} ${(isAtive: boolean) =>
-              //   isAtive && styles.active}`}
+              className={({ isActive }) =>
+                isActive ? styles.active : styles.burger_menu_button_box
+              }
               onClick={toggleDisplayHandler}
             >
               <span className={styles.link_text}>main</span>
@@ -76,7 +80,9 @@ export const BurgerMenu = () => {
             </NavLink>
             <NavLink
               to={'mylist'}
-              className={styles.burger_menu_button_box}
+              className={({ isActive }) =>
+                isActive ? styles.active : styles.burger_menu_button_box
+              }
               onClick={toggleDisplayHandler}
             >
               {' '}
