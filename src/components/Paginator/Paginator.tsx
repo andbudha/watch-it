@@ -29,7 +29,7 @@ export const Paginator = () => {
               backgroundColor: '#ad88c6',
             },
             '& .Mui-selected': {
-              backgroundColor: '#864af9',
+              backgroundColor: '#864af9 !important',
               color: '#fff',
             },
           }}
