@@ -5,6 +5,7 @@ import { AuthContext } from '../../../context/AuthContext';
 import { DataContext } from '../../../context/DataContext';
 import { IoChevronBack } from 'react-icons/io5';
 import { BiCameraMovie } from 'react-icons/bi';
+import { BandOfComments } from '../../BandOfComments/BandOfComments';
 
 export const MovieDetails = () => {
   const { movieID } = useParams();
@@ -114,6 +115,7 @@ export const MovieDetails = () => {
               </span>
             </h3>
           </div>
+          <BandOfComments />
         </div>
       </div>
       <div className={styles.home_button_box}> </div>
