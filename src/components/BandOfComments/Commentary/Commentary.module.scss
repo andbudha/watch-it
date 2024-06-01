@@ -1,19 +1,19 @@
 @import '../../../assets/sass/mixins.scss';
 @import '../../../assets/sass/variables.scss';
 .commentary_main_box {
-  // border: 1px solid;
   min-width: 260px;
   min-height: 120px;
   margin-top: 20px;
   color: $font_primary_color;
   @include flexBox(nowrap, row, center, center);
   .commentary_content_box {
-    border: 1px solid;
     border-radius: 7px 70px 7px 70px;
     padding: 0 10px;
     min-height: 100px;
-    width: 500px;
+    max-width: 350px;
     padding: 10px;
+    box-shadow: $shadow_color 0px 2px 10px 0px,
+      rgba(0, 0, 0, 0.06) 0px 0px 0px 0px;
     @include flexBox(nowrap, column, center, center);
     .user_box {
       height: 50px;
@@ -35,7 +35,6 @@
       }
     }
     .commentary_text_box {
-      // border: 1px solid;
       min-height: 30px;
       padding: 0 10px;
       width: 100%;

@@ -17,7 +17,7 @@
       width: 300px;
       margin: 10px;
       padding: 10px;
-      @include flexBox(nowrap, column, space-around, center);
+      @include flexBox(nowrap, column, space-between, center);
       .movie_img_box {
         height: 400px;
         width: 269px;
@@ -54,7 +54,7 @@
       .add_movie_button {
         height: 40px;
         width: 270px;
-        margin: 10px 0;
+        margin-top: 10px;
         cursor: pointer;
         border: 1px solid;
         border-radius: 8px;
@@ -83,6 +83,7 @@
         cursor: pointer;
         border: 1px solid;
         border-radius: 8px;
+        margin-top: 10px;
         font-weight: 500;
         text-decoration: none;
         color: $second_background_color;
