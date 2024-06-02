@@ -139,9 +139,6 @@
           }
         }
       }
-      // .active {
-      //   border: 2px solid darkblue;
-      // }
     }
   }
   .burger_button_box {
@@ -149,12 +146,12 @@
     width: 50px;
     position: absolute;
     z-index: 20;
-    top: 26px;
+    top: 28px;
     right: 14px;
     @include flexBox(nowrap, row, center, center);
     .burger_icon_button {
-      height: 32px;
-      width: 32px;
+      height: 34px;
+      width: 34px;
       font-weight: 500;
       transition: 1s;
       color: $font_secondary_color;
