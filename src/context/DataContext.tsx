@@ -22,6 +22,8 @@ type MovieToAddType = {
   id?: string;
 };
 type DataContextType = {
+  searchInputValue: string;
+  setSearchInputValue: (newSearchInoutValue: string) => void;
   usersCollection: CollectionUser[] | null;
   getUsers: () => Promise<void>;
   movies: Movies | null;
@@ -32,16 +34,16 @@ type DataContextType = {
   addCommentary: (movieID: string, textAreaValue: string) => Promise<void>;
   getCommentaries: () => Promise<void>;
 };
-
 type CollectionUser = {
   email: string;
   id: string;
   movieList: MovieToAddType[];
 };
-
 type DataProviderProps = { children: ReactNode };
 
 const initialDataContextState = {
+  searchInputValue: '',
+  setSearchInputValue: (newSearchInoutValue: string) => newSearchInoutValue,
   usersCollection: [] as CollectionUser[],
   getUsers: () => Promise.resolve(),
   movies: [] as Movies,
@@ -64,6 +66,7 @@ export const DataProvider = ({ children }: DataProviderProps) => {
   const [commentaries, setCommentaries] = useState<null | CommentaryType[]>(
     null
   );
+  const [searchInputValue, setSearchInputValue] = useState<string>('');
 
   const fetchMovies = async () => {
     const response = await axios.get<Movies>(
@@ -150,6 +153,8 @@ export const DataProvider = ({ children }: DataProviderProps) => {
   return (
     <DataContext.Provider
       value={{
+        searchInputValue,
+        setSearchInputValue,
         usersCollection,
         getUsers,
         fetchMovies,

@@ -1,10 +1,11 @@
-import { useState, ChangeEvent } from 'react';
+import { ChangeEvent, useContext } from 'react';
 import { CiSearch } from 'react-icons/ci';
 import { RxCross2 } from 'react-icons/rx';
 import styles from './Search.module.scss';
+import { DataContext } from '../../context/DataContext';
 
 export const Search = () => {
-  const [searchInputValue, setSearchInputValue] = useState<string>('');
+  const { setSearchInputValue, searchInputValue } = useContext(DataContext);
 
   const getSearchInputValueHandler = (event: ChangeEvent<HTMLInputElement>) => {
     setSearchInputValue(event.currentTarget.value);
