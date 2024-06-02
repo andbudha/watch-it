@@ -19,7 +19,7 @@ export const MovieDetails = () => {
   } = useContext(DataContext);
 
   const movie = movies?.find((movie) => movie.id === movieID);
-  const castList = movie?.cast.splice(0, 5).join(', ');
+  const castList = movie?.cast.join(', ');
   const genreList = movie?.genres.join(', ');
 
   const currentUserList = usersCollection?.find(
