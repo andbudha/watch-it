@@ -1,15 +1,14 @@
 import { CiUser } from 'react-icons/ci';
 import styles from './Commentary.module.scss';
+import { CommentaryType } from '../../../assets/types/common_types';
 
-export const Commentary = () => {
-  const commentary = {
-    id: '147',
-    userID: '123',
-    profileImg: '',
-    email: ' andrei@andrei.com',
-    timestamp: 123456,
-    commentary: 'Aha, here you are...',
-  };
+type CommentaryProps = {
+  commentary: CommentaryType;
+};
+export const Commentary = ({ commentary }: CommentaryProps) => {
+  const convertedTime = commentary.timestamp.toDate().toLocaleTimeString();
+  const convertedDate = commentary.timestamp.toDate().toDateString();
+
   return (
     <div className={styles.commentary_main_box}>
       <div className={styles.commentary_content_box}>
@@ -17,15 +16,14 @@ export const Commentary = () => {
           <div className={styles.user_img_box}>
             <CiUser className={styles.user_icon} />
           </div>
-          <h5 className={styles.user_name}>Andrei</h5>
+          <h5 className={styles.user_name}>{commentary.email}</h5>
         </div>
         <div className={styles.commentary_text_box}>
-          <p className={styles.commentary_text}>
-            One of the most thrilling movies I have ever seen...
-          </p>
+          <p className={styles.commentary_text}>{commentary.commentary}</p>
         </div>
         <div className={styles.commentary_timestamp_box}>
-          <p className="">31.05.2024/18:36</p>
+          <p>{convertedTime}</p>
+          <p>{convertedDate}</p>
         </div>
       </div>
     </div>

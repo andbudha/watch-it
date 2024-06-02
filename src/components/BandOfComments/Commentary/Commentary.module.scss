@@ -10,7 +10,7 @@
     border-radius: 7px 70px 7px 70px;
     padding: 0 10px;
     min-height: 100px;
-    max-width: 350px;
+    width: 350px;
     padding: 10px;
     box-shadow: $shadow_color 0px 2px 10px 0px,
       rgba(0, 0, 0, 0.06) 0px 0px 0px 0px;
@@ -32,18 +32,24 @@
       }
       .user_name {
         margin: 0 10px;
+        font-size: 1rem;
+        font-weight: 400;
+        font-style: oblique;
       }
     }
     .commentary_text_box {
       min-height: 30px;
       padding: 0 10px;
+      font-weight: 700;
+      color: $font_secondary_color;
       width: 100%;
     }
     .commentary_timestamp_box {
       width: 100%;
       font-style: oblique;
+
       padding: 0 10px;
-      @include flexBox(nowrap, row, end, center);
+      @include flexBox(nowrap, column, end, end);
     }
   }
 }
