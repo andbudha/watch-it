@@ -1,6 +1,6 @@
 import { NavLink, useParams } from 'react-router-dom';
 import styles from './MovieDetails.module.scss';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { AuthContext } from '../../../context/AuthContext';
 import { DataContext } from '../../../context/DataContext';
 import { IoChevronBack } from 'react-icons/io5';
@@ -10,8 +10,14 @@ import { BandOfComments } from '../../BandOfComments/BandOfComments';
 export const MovieDetails = () => {
   const { movieID } = useParams();
   const { user } = useContext(AuthContext);
-  const { addMovieToMyList, getUsers, movies, usersCollection } =
-    useContext(DataContext);
+  const {
+    addMovieToMyList,
+    getUsers,
+    movies,
+    usersCollection,
+    getCommentaries,
+  } = useContext(DataContext);
+
   const movie = movies?.find((movie) => movie.id === movieID);
   const castList = movie?.cast.splice(0, 5).join(', ');
   const genreList = movie?.genres.join(', ');
@@ -38,6 +44,9 @@ export const MovieDetails = () => {
     getUsers();
   };
 
+  useEffect(() => {
+    getCommentaries();
+  }, []);
   return (
     <div className={styles.movie_details_main_box}>
       <div className={styles.movie_details_box}>
@@ -115,7 +124,7 @@ export const MovieDetails = () => {
               </span>
             </h3>
           </div>
-          <BandOfComments />
+          <BandOfComments movieID={movieID} />
         </div>
       </div>
       <div className={styles.home_button_box}> </div>
