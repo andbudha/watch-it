@@ -1,7 +1,7 @@
 import { FirebaseError } from 'firebase/app';
 import toast from 'react-hot-toast';
 
-const toastError = (message: string) =>
+export const toastError = (message: string) =>
   toast.error(message, {
     duration: 3500,
     style: {

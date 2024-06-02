@@ -5,7 +5,7 @@
   // border: 1px solid;
   width: 340px;
   min-height: 160px;
-  margin-top: 50px;
+  margin-top: 20px;
   border-radius: 8px;
   color: $font_secondary_color;
   background-color: $third_background_color;
@@ -33,7 +33,7 @@
         resize: none;
         &::placeholder {
           color: $shadow_color;
-          font-size: small;
+          font-size: 1rem;
         }
       }
     }

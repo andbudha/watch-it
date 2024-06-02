@@ -1,16 +1,27 @@
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useContext, useState } from 'react';
 import styles from './CommentaryForm.module.scss';
 import { FiSend } from 'react-icons/fi';
+import { useParams } from 'react-router-dom';
+import { DataContext } from '../../../context/DataContext';
+import { toastError } from '../../../assets/utils/failedToast';
 
 export const CommentaryForm = () => {
+  const { addCommentary, getCommentaries } = useContext(DataContext);
   const [textAreaValue, setTextAreaValue] = useState<string>('');
+  const { movieID } = useParams();
+  console.log(movieID);
 
   const catchTextAreaValueHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setTextAreaValue(e.currentTarget.value);
   };
 
-  const sendCommentHandler = () => {
-    console.log(textAreaValue);
+  const addCommentHandler = () => {
+    if (textAreaValue.trim() === '') {
+      toastError('Please, first write a commentary before posting it!');
+    } else if (movieID && textAreaValue.trim() !== '') {
+      addCommentary(movieID, textAreaValue.trim());
+      getCommentaries();
+    }
     setTextAreaValue('');
   };
   return (
@@ -22,20 +33,18 @@ export const CommentaryForm = () => {
             value={textAreaValue}
             className={styles.text_area}
             onChange={catchTextAreaValueHandler}
-            placeholder={'Share your thaughts...'}
+            placeholder={'Type in your commentary here...'}
           ></textarea>
         </div>
-        {!!textAreaValue && (
-          <div
-            className={styles.submit_commentary_button_box}
-            onClick={sendCommentHandler}
-          >
-            <div className={styles.submit_commentary_button}>
-              {' '}
-              <FiSend className={styles.send_icon} />
-            </div>
+        <div
+          className={styles.submit_commentary_button_box}
+          onClick={addCommentHandler}
+        >
+          <div className={styles.submit_commentary_button}>
+            {' '}
+            <FiSend className={styles.send_icon} />
           </div>
-        )}
+        </div>
       </div>
     </div>
   );
