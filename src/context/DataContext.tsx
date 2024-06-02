@@ -1,8 +1,9 @@
 import { ReactNode, createContext, useContext, useState } from 'react';
-import { Movies } from '../assets/types/common_types';
+import { CommentaryType, Movies } from '../assets/types/common_types';
 import { auth, dataBase } from '../config/firebase';
 import {
   DocumentReference,
+  addDoc,
   arrayRemove,
   arrayUnion,
   collection,
@@ -24,9 +25,12 @@ type DataContextType = {
   usersCollection: CollectionUser[] | null;
   getUsers: () => Promise<void>;
   movies: Movies | null;
+  commentaries: CommentaryType[] | null;
   fetchMovies: () => Promise<void>;
   addMovieToMyList: (newMovie: MovieToAddType) => Promise<void>;
   removeMovieFromMyList: (movie: MovieToAddType) => Promise<void>;
+  addCommentary: (movieID: string, textAreaValue: string) => Promise<void>;
+  getCommentaries: () => Promise<void>;
 };
 
 type CollectionUser = {
@@ -41,9 +45,12 @@ const initialDataContextState = {
   usersCollection: [] as CollectionUser[],
   getUsers: () => Promise.resolve(),
   movies: [] as Movies,
+  commentaries: [] as CommentaryType[],
   fetchMovies: () => Promise.resolve(),
   addMovieToMyList: () => Promise.resolve(),
   removeMovieFromMyList: () => Promise.resolve(),
+  addCommentary: () => Promise.resolve(),
+  getCommentaries: () => Promise.resolve(),
 } as DataContextType;
 
 export const DataContext = createContext(initialDataContextState);
@@ -54,8 +61,11 @@ export const DataProvider = ({ children }: DataProviderProps) => {
   const [usersCollection, setUsersCollection] = useState<
     CollectionUser[] | null
   >(null);
+  const [commentaries, setCommentaries] = useState<null | CommentaryType[]>(
+    null
+  );
+  console.log(commentaries);
 
-  // const localData = '../../data/movieswithid.json';
   const fetchMovies = async () => {
     const response = await axios.get<Movies>(
       'https://5b81e3264853b358.mokky.dev/mixedmovies'
@@ -65,9 +75,8 @@ export const DataProvider = ({ children }: DataProviderProps) => {
     }
   };
 
-  const usersList = collection(dataBase, 'users');
-
   const getUsers = async () => {
+    const usersList = collection(dataBase, 'users');
     try {
       const response = await getDocs(usersList);
       const data = response.docs.map((doc) => ({
@@ -95,6 +104,40 @@ export const DataProvider = ({ children }: DataProviderProps) => {
     } catch (error) {}
   };
 
+  const getCommentaries = async () => {
+    const commentariesList = collection(dataBase, 'commentaries');
+    try {
+      console.log(doc);
+
+      const response = await getDocs(commentariesList);
+      const data = response.docs.map((doc) => ({
+        ...(doc.data() as CommentaryType),
+        id: doc.id,
+      }));
+      if (data) {
+        setCommentaries(data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const addCommentary = async (movieID: string, textAreaValue: string) => {
+    const newCommentary = {
+      movieID,
+      userID: auth.currentUser?.uid,
+      profileImg: '',
+      email: auth.currentUser?.email,
+      timestamp: new Date(),
+      commentary: textAreaValue,
+    };
+    try {
+      await addDoc(collection(dataBase, 'commentaries'), newCommentary);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const removeMovieFromMyList = async (movie: MovieToAddType) => {
     setIsLoading(true);
     try {
@@ -116,6 +159,9 @@ export const DataProvider = ({ children }: DataProviderProps) => {
         movies,
         addMovieToMyList,
         removeMovieFromMyList,
+        addCommentary,
+        commentaries,
+        getCommentaries,
       }}
     >
       {children}
