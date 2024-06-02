@@ -1,3 +1,4 @@
+import { Timestamp } from 'firebase/firestore';
 export type Movie = {
   id: string;
   title: string;
@@ -43,4 +44,14 @@ export type ListMovieType = {
   userID: string;
   thumbnail: string;
   id: string;
+};
+
+export type CommentaryType = {
+  movieID: string;
+  id: string;
+  userID: string | undefined;
+  profileImg: string;
+  email: string | null | undefined;
+  timestamp: Timestamp;
+  commentary: string;
 };
