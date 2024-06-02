@@ -9,7 +9,6 @@ export const CommentaryForm = () => {
   const { addCommentary, getCommentaries } = useContext(DataContext);
   const [textAreaValue, setTextAreaValue] = useState<string>('');
   const { movieID } = useParams();
-  console.log(movieID);
 
   const catchTextAreaValueHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setTextAreaValue(e.currentTarget.value);
@@ -17,7 +16,7 @@ export const CommentaryForm = () => {
 
   const addCommentHandler = () => {
     if (textAreaValue.trim() === '') {
-      toastError('Please, first write a commentary before posting it!');
+      toastError('Please, first write a commentary!');
     } else if (movieID && textAreaValue.trim() !== '') {
       addCommentary(movieID, textAreaValue.trim());
       getCommentaries();

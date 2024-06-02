@@ -20,7 +20,15 @@ export const BandOfComments = ({ movieID }: BandOfCommentsProps) => {
   ));
   return (
     <div className={styles.comment_band_main_box}>
-      <h2 className={styles.section_title}>Share your thaughts here:</h2>
+      <div className={styles.underline}></div>
+      {!user ? (
+        <h2 className={styles.section_title}>
+          Log in to leave commentaries and save favourite movies!
+        </h2>
+      ) : (
+        <h2 className={styles.section_title}>Share your thaughts:</h2>
+      )}
+
       <div className={styles.underline}></div>
       {listOfCommentaries}
       {!!user && <CommentaryForm />}

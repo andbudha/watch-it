@@ -64,7 +64,6 @@ export const DataProvider = ({ children }: DataProviderProps) => {
   const [commentaries, setCommentaries] = useState<null | CommentaryType[]>(
     null
   );
-  console.log(commentaries);
 
   const fetchMovies = async () => {
     const response = await axios.get<Movies>(
@@ -107,8 +106,6 @@ export const DataProvider = ({ children }: DataProviderProps) => {
   const getCommentaries = async () => {
     const commentariesList = collection(dataBase, 'commentaries');
     try {
-      console.log(doc);
-
       const response = await getDocs(commentariesList);
       const data = response.docs.map((doc) => ({
         ...(doc.data() as CommentaryType),
