@@ -20,13 +20,20 @@ const initialPaginationContextState = {
 export const PaginationContext = createContext(initialPaginationContextState);
 
 export const PaginationProvider = ({ children }: PaginationProviderProps) => {
-  const { movies } = useContext(DataContext);
+  const { movies, searchInputValue } = useContext(DataContext);
+  console.log(searchInputValue);
+  const filteredMovies = movies?.filter((movie) =>
+    movie.title.toLowerCase().includes(searchInputValue.toLowerCase())
+  );
   const moviesPerPage = 10;
-  const numberOfPages = Math.ceil(movies ? movies?.length / moviesPerPage : 0);
+  const numberOfPages = Math.ceil(
+    filteredMovies ? filteredMovies?.length / moviesPerPage : 0
+  );
   const [currentPage, setCurrentPage] = useState<number>(1);
   const start = moviesPerPage * (currentPage - 1);
   const end = start + moviesPerPage;
-  const moviesToDisplayPerPage = movies?.slice(start, end);
+  const moviesToDisplayPerPage = filteredMovies?.slice(start, end);
+
   return (
     <PaginationContext.Provider
       value={{
