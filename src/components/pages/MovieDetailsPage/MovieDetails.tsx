@@ -80,7 +80,7 @@ export const MovieDetails = () => {
           <NavLink className={styles.home_button} to={'/'}>
             {' '}
             <IoChevronBack className={styles.chevron_icon} />
-            main
+            back
           </NavLink>
         </div>
         <div className={styles.movie_info_box}>
