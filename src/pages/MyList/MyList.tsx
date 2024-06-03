@@ -4,9 +4,9 @@ import { AiFillDelete } from 'react-icons/ai';
 
 import { IoChevronBack } from 'react-icons/io5';
 import { useContext, useEffect } from 'react';
-import { AuthContext } from '../../../context/AuthContext';
-import { DataContext } from '../../../context/DataContext';
-import { MiniLoader } from '../../Loaders/MiniLoader';
+import { AuthContext } from '../../context/AuthContext';
+import { DataContext } from '../../context/DataContext';
+import { MiniLoader } from '../../components/Loaders/MiniLoader';
 import { BiCameraMovie } from 'react-icons/bi';
 export const MyList = () => {
   type MovieToRemoveType = {

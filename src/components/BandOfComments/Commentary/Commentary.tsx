@@ -1,6 +1,6 @@
 import { CiUser } from 'react-icons/ci';
 import styles from './Commentary.module.scss';
-import { CommentaryType } from '../../../assets/types/common_types';
+import { CommentaryType } from '../../../types/common_types';
 
 type CommentaryProps = {
   commentary: CommentaryType;

@@ -1,12 +1,9 @@
 import { NavLink, Navigate } from 'react-router-dom';
 import styles from './Signup.module.scss';
 import { ChangeEvent, useContext, useState } from 'react';
-import { AuthContext } from '../../../context/AuthContext';
-import {
-  SignupValueTypes,
-  SignupErrorTypes,
-} from '../../../assets/types/common_types';
-import { Loader } from '../../Loaders/Loader';
+import { AuthContext } from '../../context/AuthContext';
+import { SignupValueTypes, SignupErrorTypes } from '../../types/common_types';
+import { Loader } from '../../components/Loaders/Loader';
 
 export const Signup = () => {
   const {

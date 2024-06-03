@@ -1,7 +1,7 @@
 import styles from './Home.module.scss';
 import { GridMovies } from './GridMovies/GridMovies';
-import { Search } from '../../Search/Search';
-import { Paginator } from '../../Paginator/Paginator';
+import { Search } from '../../components/Search/Search';
+import { Paginator } from '../../components/Paginator/Paginator';
 
 export const Home = () => {
   return (

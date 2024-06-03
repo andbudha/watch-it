@@ -1,11 +1,11 @@
 import { NavLink, useParams } from 'react-router-dom';
 import styles from './MovieDetails.module.scss';
 import { useContext, useEffect } from 'react';
-import { AuthContext } from '../../../context/AuthContext';
-import { DataContext } from '../../../context/DataContext';
+import { AuthContext } from '../../context/AuthContext';
+import { DataContext } from '../../context/DataContext';
 import { IoChevronBack } from 'react-icons/io5';
 import { BiCameraMovie } from 'react-icons/bi';
-import { BandOfComments } from '../../BandOfComments/BandOfComments';
+import { BandOfComments } from '../../components/BandOfComments/BandOfComments';
 
 export const MovieDetails = () => {
   const { movieID } = useParams();

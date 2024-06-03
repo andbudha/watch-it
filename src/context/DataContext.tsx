@@ -1,5 +1,5 @@
 import { ReactNode, createContext, useContext, useState } from 'react';
-import { CommentaryType, Movies } from '../assets/types/common_types';
+import { CommentaryType, Movies } from '../types/common_types';
 import { auth, dataBase } from '../config/firebase';
 import {
   DocumentReference,
@@ -69,11 +69,15 @@ export const DataProvider = ({ children }: DataProviderProps) => {
   const [searchInputValue, setSearchInputValue] = useState<string>('');
 
   const fetchMovies = async () => {
-    const response = await axios.get<Movies>(
-      'https://5b81e3264853b358.mokky.dev/mixedmovies'
-    );
-    if (response) {
-      setMovies(response.data);
+    try {
+      const response = await axios.get<Movies>(
+        'https://5b81e3264853b358.mokky.dev/mixedmoviess'
+      );
+      if (response) {
+        setMovies(response.data);
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
 

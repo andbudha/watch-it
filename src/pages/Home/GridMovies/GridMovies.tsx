@@ -1,7 +1,7 @@
-import { MovieCard } from '../../../MovieCard/MovieCard';
+import { MovieCard } from '../../../components/MovieCard/MovieCard';
 import styles from './GridMovies.module.scss';
 import { useContext } from 'react';
-import { PaginationContext } from '../../../../context/PaginationContext';
+import { PaginationContext } from '../../../context/PaginationContext';
 import { FaRegFaceSadTear } from 'react-icons/fa6';
 
 export const GridMovies = () => {

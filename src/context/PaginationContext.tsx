@@ -1,6 +1,6 @@
 import { ReactNode, createContext, useContext, useState } from 'react';
 import { DataContext } from './DataContext';
-import { Movie } from '../assets/types/common_types';
+import { Movie } from '../types/common_types';
 
 type PaginationContextType = {
   currentPage: number;
@@ -21,7 +21,6 @@ export const PaginationContext = createContext(initialPaginationContextState);
 
 export const PaginationProvider = ({ children }: PaginationProviderProps) => {
   const { movies, searchInputValue } = useContext(DataContext);
-  console.log(searchInputValue);
   const filteredMovies = movies?.filter((movie) =>
     movie.title.toLowerCase().includes(searchInputValue.toLowerCase())
   );

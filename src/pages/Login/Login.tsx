@@ -1,13 +1,10 @@
 import { useFormik } from 'formik';
 import styles from './Login.module.scss';
 import { NavLink, Navigate } from 'react-router-dom';
-import {
-  LoginErrorValues,
-  LoginValues,
-} from '../../../assets/types/common_types';
+import { LoginErrorValues, LoginValues } from '../../types/common_types';
 import { useContext } from 'react';
-import { AuthContext } from '../../../context/AuthContext';
-import { Loader } from '../../Loaders/Loader';
+import { AuthContext } from '../../context/AuthContext';
+import { Loader } from '../../components/Loaders/Loader';
 
 export const Login = () => {
   const { user, logInUser, isLoading } = useContext(AuthContext);

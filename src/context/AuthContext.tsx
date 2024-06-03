@@ -3,7 +3,7 @@ import {
   LoginValues,
   SignupValueTypes,
   UserResponse,
-} from '../assets/types/common_types';
+} from '../types/common_types';
 import { dataBase, auth } from '../config/firebase';
 import {
   createUserWithEmailAndPassword,
@@ -62,8 +62,6 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [signupPasswordInputValue, setSignupPasswordInputValue] =
     useState<string>('');
 
-  console.log(user);
-
   const registerUser = async (signUpValues: SignupValueTypes) => {
     setIsLoading(true);
     try {
@@ -85,7 +83,6 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       }
     } catch (error) {
       if (error instanceof FirebaseError) {
-        console.log(error);
         generateFirebaseErrorInstance(error);
       }
     } finally {

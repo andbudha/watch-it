@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import { Movie } from '../../assets/types/common_types';
+import { Movie } from '../../types/common_types';
 import styles from './MovieCard.module.scss';
 import { BiCameraMovie } from 'react-icons/bi';
 
