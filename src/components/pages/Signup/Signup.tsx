@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, Navigate } from 'react-router-dom';
 import styles from './Signup.module.scss';
 import { ChangeEvent, useContext, useState } from 'react';
 import { AuthContext } from '../../../context/AuthContext';
@@ -10,6 +10,7 @@ import { Loader } from '../../Loaders/Loader';
 
 export const Signup = () => {
   const {
+    user,
     registerUser,
     isLoading,
     signupEmailInputValue,
@@ -81,6 +82,9 @@ export const Signup = () => {
     }
   };
 
+  if (user) {
+    return <Navigate to={'/'} />;
+  }
   return (
     <div className={styles.signup_main_box}>
       <div className={styles.signup_box}>

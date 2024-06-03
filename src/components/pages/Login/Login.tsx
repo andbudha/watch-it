@@ -10,8 +10,7 @@ import { AuthContext } from '../../../context/AuthContext';
 import { Loader } from '../../Loaders/Loader';
 
 export const Login = () => {
-  const { isLoggedIn, logInUser, isLoading } = useContext(AuthContext);
-  console.log(isLoggedIn);
+  const { user, logInUser, isLoading } = useContext(AuthContext);
 
   const validate = (values: LoginValues) => {
     const errors: LoginErrorValues = {};
@@ -41,7 +40,7 @@ export const Login = () => {
     },
   });
 
-  if (isLoggedIn) {
+  if (user) {
     return <Navigate to={'/'} />;
   }
   return (

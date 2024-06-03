@@ -17,7 +17,6 @@ import { generateFirebaseErrorInstance } from '../assets/utils/failedToast';
 import { doc, setDoc } from 'firebase/firestore';
 
 type AuthContextType = {
-  isLoggedIn: boolean;
   isLoading: boolean;
   signupEmailInputValue: string;
   signupPasswordInputValue: string;
@@ -27,13 +26,11 @@ type AuthContextType = {
   logOutUser: () => Promise<void>;
   setSignupEmailInputValue: (newSignupEmailInputValue: string) => void;
   setSignupPasswordInputValue: (newSignupPasswordInputValue: string) => void;
-  setIsLoggedIn: (newStatus: boolean) => void;
   stayLoggedIn: () => void;
   setIsLoading: (newLoadingStatus: boolean) => void;
 };
 
 const authInitialContextState = {
-  isLoggedIn: false,
   isLoading: false,
   signupEmailInputValue: '',
   signupPasswordInputValue: '',
@@ -45,7 +42,6 @@ const authInitialContextState = {
   registerUser: () => Promise.resolve(),
   logInUser: () => Promise.resolve(),
   logOutUser: () => Promise.resolve(),
-  setIsLoggedIn: (newStatus: boolean) => newStatus,
   stayLoggedIn: () => {
     throw new Error('An error occurred when refreshing the app page!');
   },
@@ -61,11 +57,12 @@ type AuthProviderProps = { children: ReactNode };
 export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [user, setUser] = useState<UserResponse | undefined>(undefined);
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [signupEmailInputValue, setSignupEmailInputValue] =
     useState<string>('');
   const [signupPasswordInputValue, setSignupPasswordInputValue] =
     useState<string>('');
+
+  console.log(user);
 
   const registerUser = async (signUpValues: SignupValueTypes) => {
     setIsLoading(true);
@@ -82,13 +79,9 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
             movieList: [],
           });
         }
-        successfulToast('User created successfully. You can log in now.');
+        successfulToast('User created and logged in successfully!');
         setSignupEmailInputValue('');
         setSignupPasswordInputValue('');
-        setUser({
-          userID: auth.currentUser?.uid,
-          email: auth.currentUser?.email,
-        });
       }
     } catch (error) {
       if (error instanceof FirebaseError) {
@@ -108,10 +101,10 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         logInValues.email,
         logInValues.password
       );
+      console.log(response);
 
       if (response) {
         successfulToast('Logged in successfully!');
-        setIsLoggedIn(true);
         setUser({ email: response.user.email, userID: response.user.uid });
       }
     } catch (error) {
@@ -129,7 +122,6 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       const response = await signOut(auth);
       console.log(response);
       successfulToast('Logged out successfully!');
-      setIsLoggedIn(false);
       setUser(undefined);
     } catch (error) {
       if (error instanceof FirebaseError) {
@@ -153,7 +145,6 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   return (
     <AuthContext.Provider
       value={{
-        isLoggedIn,
         isLoading,
         user,
         registerUser,
@@ -163,7 +154,6 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         signupPasswordInputValue,
         setSignupEmailInputValue,
         setSignupPasswordInputValue,
-        setIsLoggedIn,
         stayLoggedIn,
         setIsLoading,
       }}
