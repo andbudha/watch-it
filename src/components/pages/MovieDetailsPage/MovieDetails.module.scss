@@ -108,7 +108,7 @@
     .movie_info_box {
       min-height: 300px;
       max-width: 800px;
-      padding: 10px 20px;
+      padding: 10px;
       margin: 10px 0;
       line-height: 1.6;
       @include flexBox(nowrap, column, center, start);
