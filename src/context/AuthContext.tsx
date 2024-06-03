@@ -116,8 +116,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const logOutUser = async () => {
     setIsLoading(true);
     try {
-      const response = await signOut(auth);
-      console.log(response);
+      await signOut(auth);
       successfulToast('Logged out successfully!');
       setUser(undefined);
     } catch (error) {

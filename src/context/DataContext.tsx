@@ -11,8 +11,9 @@ import {
   getDocs,
   updateDoc,
 } from 'firebase/firestore';
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 import { AuthContext } from './AuthContext';
+import { toastError } from '../assets/utils/failedToast';
 
 type MovieToAddType = {
   title?: string;
@@ -71,13 +72,17 @@ export const DataProvider = ({ children }: DataProviderProps) => {
   const fetchMovies = async () => {
     try {
       const response = await axios.get<Movies>(
-        'https://5b81e3264853b358.mokky.dev/mixedmoviess'
+        'https://5b81e3264853b358.mokky.dev/mixedmovies'
       );
       if (response) {
         setMovies(response.data);
       }
     } catch (error) {
-      console.log(error);
+      if (error instanceof AxiosError) {
+        toastError(error.message);
+      } else {
+        console.log(error);
+      }
     }
   };
 
