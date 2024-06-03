@@ -10,7 +10,6 @@ export const BurgerMenu = () => {
   const { logOutUser, user } = useContext(AuthContext);
   const { getUsers, usersCollection } = useContext(DataContext);
   const [display, setDisplay] = useState<boolean>(false);
-
   const currentUserList = usersCollection?.find(
     (collectionUser) => collectionUser.id === user?.userID
   )?.movieList;

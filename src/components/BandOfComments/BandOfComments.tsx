@@ -28,7 +28,6 @@ export const BandOfComments = ({ movieID }: BandOfCommentsProps) => {
       ) : (
         <h2 className={styles.section_title}>Share your thaughts:</h2>
       )}
-
       <div className={styles.underline}></div>
       {listOfCommentaries}
       {!!user && <CommentaryForm />}

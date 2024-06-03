@@ -1,7 +1,6 @@
 import { NavLink, Navigate } from 'react-router-dom';
 import styles from './MyList.module.scss';
 import { AiFillDelete } from 'react-icons/ai';
-
 import { IoChevronBack } from 'react-icons/io5';
 import { useContext, useEffect } from 'react';
 import { AuthContext } from '../../context/AuthContext';
@@ -61,7 +60,6 @@ export const MyList = () => {
                     </div>
                   </div>
                 )}
-
                 <div className={styles.list_item_detail_box}>
                   <h4 className={styles.list_item_title}>
                     <div>Title:</div>{' '}

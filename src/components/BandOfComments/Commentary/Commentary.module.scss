@@ -47,7 +47,6 @@
     .commentary_timestamp_box {
       width: 100%;
       font-style: oblique;
-
       padding: 0 10px;
       @include flexBox(nowrap, column, end, end);
     }

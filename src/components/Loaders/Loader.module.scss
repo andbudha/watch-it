@@ -9,7 +9,6 @@
   background-color: rgb(0, 0, 0); /* Fallback color */
   background-color: rgba(0, 0, 0, 0.1); /* Black w/ opacity */
   @include flexBox(nowrap, column, center, center);
-
   .loader {
     width: 58px;
     height: 58px;
@@ -25,13 +24,11 @@
       border: 7px solid $font_primary_color;
       animation: prixClipFix 2s linear infinite;
     }
-
     @keyframes rotate {
       100% {
         transform: rotate(360deg);
       }
     }
-
     @keyframes prixClipFix {
       0% {
         clip-path: polygon(50% 50%, 0 0, 0 0, 0 0, 0 0, 0 0);

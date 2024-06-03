@@ -6,7 +6,6 @@
   min-height: 350px;
   color: $font_secondary_color;
   @include flexBox(nowrap, column, start, center);
-
   .section_title {
     letter-spacing: 1.4px;
     text-align: center;

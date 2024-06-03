@@ -2,7 +2,6 @@
 @import '../../../src/assets/sass/variables.scss';
 
 .pagination_main_box {
-  // border: 1px solid;
   height: 120px;
   width: 100%;
   @include flexBox(nowrap, row, center, center);

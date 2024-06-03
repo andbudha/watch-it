@@ -2,7 +2,6 @@
 @import '../../../assets/sass/variables.scss';
 
 .commentary_main_box {
-  // border: 1px solid;
   width: 340px;
   min-height: 160px;
   margin-top: 20px;
@@ -13,7 +12,6 @@
     rgba(0, 0, 0, 0.06) 0px 0px 0px 0px;
   @include flexBox(nowrap, column, start, center);
   .common_box {
-    // border: 1px solid;
     border-radius: 8px;
     .text_area_box {
       width: 340px;

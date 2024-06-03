@@ -21,7 +21,6 @@
     @include flexBox(nowrap, column, center, center);
     .auth_box,
     .nav_box {
-      // border: 1px solid;
       padding: 10px;
       min-height: 100px;
       width: 140px;
@@ -133,7 +132,6 @@
           color: #fff;
           background-color: $font_secondary_color;
           @include flexBox(nowrap, row, space-around, center);
-
           .my_list_length {
             font-weight: 600;
           }
