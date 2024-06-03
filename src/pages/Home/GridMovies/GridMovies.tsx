@@ -22,7 +22,7 @@ export const GridMovies = () => {
         <div className={styles.no_match_found_box}>
           {' '}
           <FaRegFaceSadTear className={styles.no_match_found_icon} />
-          <div className={styles.no_match_found_text}>No Match Found</div>
+          <div className={styles.no_match_found_text}>No Data Found</div>
         </div>
       )}
     </div>

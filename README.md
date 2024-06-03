@@ -4,8 +4,8 @@
 - **typescript**
 - **sass-preprocessor**
 - **react router**
-- **axios**
 - **firebase**
+- **axios**
 - **formik**
 - **react-icons**
 - **react hot toast**
@@ -15,7 +15,7 @@
 - **Getting data from an API**
 - **Generating and displaying cards upon the received data**
 - **Displaying a detailed page of a selected card**
-- **Posting comemntaries for each item displayed in the datails page**
+- **Posting comemntaries for each item displayed in the datailed page**
 - **Searching for data according to the text-input-value**
 - **Authentication: regestration of a new user and logging in/logging out**
 - **Signup-input and login-input validation**
