@@ -4,7 +4,7 @@ import {
   SignupValueTypes,
   UserResponse,
 } from '../types/common_types';
-import { dataBase, auth } from '../config/firebase.ts';
+import { dataBase, auth } from '../config/firebase';
 import {
   createUserWithEmailAndPassword,
   onAuthStateChanged,

@@ -1,6 +1,6 @@
 import { ReactNode, createContext, useContext, useState } from 'react';
 import { CommentaryType, Movies } from '../types/common_types';
-import { auth, dataBase } from '../config/firebase.ts';
+import { auth, dataBase } from '../config/firebase';
 import {
   DocumentReference,
   addDoc,
