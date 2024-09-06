@@ -9,8 +9,8 @@ export const CardSkeleton = () => {
         width={180}
         height={280}
         viewBox="0 0 180 280"
-        backgroundColor="#eee3ee"
-        foregroundColor="#e4d2e4"
+        backgroundColor="#ffffff"
+        foregroundColor="#fdf2fd"
       >
         <rect x="0" y="0" rx="8" ry="8" width="180" height="280" />
       </ContentLoader>
