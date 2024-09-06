@@ -2,12 +2,19 @@ import { useFormik } from 'formik';
 import styles from './Login.module.scss';
 import { NavLink, Navigate } from 'react-router-dom';
 import { LoginErrorValues, LoginValues } from '../../types/common_types';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { AuthContext } from '../../context/AuthContext';
+import { LuEye, LuEyeOff } from 'react-icons/lu';
 import { Loader } from '../../components/Loaders/Loader';
 
 export const Login = () => {
   const { user, logInUser, isLoading } = useContext(AuthContext);
+  const [passVisibilityStatus, setPassVisibilityStatus] =
+    useState<boolean>(false);
+
+  const togglePassVisibilityStatusHandler = () => {
+    setPassVisibilityStatus(!passVisibilityStatus);
+  };
 
   const validate = (values: LoginValues) => {
     const errors: LoginErrorValues = {};
@@ -21,7 +28,7 @@ export const Login = () => {
     if (!values.password) {
       errors.password = 'Password is required!';
     } else if (values.password.length < 6) {
-      errors.password = 'Must be at least 6 characters';
+      errors.password = 'At least 6 characters';
     }
     return errors;
   };
@@ -37,6 +44,9 @@ export const Login = () => {
     },
   });
 
+  const loginAsGuestHandler = () => {
+    console.log('Loggedin as guest!');
+  };
   if (user) {
     return <Navigate to={'/'} />;
   }
@@ -57,12 +67,13 @@ export const Login = () => {
             </div>
           )}
 
-          <div className={styles.input_box}>
+          <div className={styles.email_input_box}>
             <input
-              className={styles.login_input}
+              className={styles.email_input}
               id="email"
               name="email"
               type="email"
+              placeholder="Email..."
               onChange={formik.handleChange}
               value={formik.values.email}
             />
@@ -78,28 +89,46 @@ export const Login = () => {
               <label htmlFor="password">Password</label>
             </div>
           )}
-          <div className={styles.input_box}>
+          <div className={styles.password_input_box}>
             <input
-              className={styles.login_input}
+              className={styles.password_input}
               id="password"
               name="password"
-              type="password"
+              placeholder="Password..."
+              type={passVisibilityStatus ? 'text' : 'password'}
               onChange={formik.handleChange}
               value={formik.values.password}
             />
+            {passVisibilityStatus ? (
+              <LuEyeOff
+                className={styles.eye_icon}
+                onClick={togglePassVisibilityStatusHandler}
+              />
+            ) : (
+              <LuEye
+                className={styles.eye_icon}
+                onClick={togglePassVisibilityStatusHandler}
+              />
+            )}
           </div>
           <button className={styles.login_button} type="submit">
-            Login
+            login
           </button>
           <div className={styles.info_box}>
-            <span className={styles.info_text}>
-              Don't have an account?{' '}
-              <NavLink to={'/signup'} className={styles.signup_link}>
-                Sign up
-              </NavLink>
-            </span>
+            <p className={styles.info_text}>
+              Don't have an account? You can either login as guest or
+              <span>
+                {' '}
+                <NavLink to={'/signup'} className={styles.signup_link}>
+                  Sign up
+                </NavLink>
+              </span>
+            </p>
           </div>
         </form>
+        <button className={styles.guest_button} onClick={loginAsGuestHandler}>
+          guest
+        </button>
       </div>
     </div>
   );
