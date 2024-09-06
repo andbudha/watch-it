@@ -45,13 +45,16 @@ export const MyList = () => {
             return (
               <div className={styles.list_item_box} key={movie.id}>
                 {movie?.thumbnail ? (
-                  <div className={styles.list_item_img_box}>
+                  <NavLink
+                    className={styles.list_item_img_box}
+                    to={`/movies/movie/${movie.id}`}
+                  >
                     <img
                       className={styles.list_item_img}
                       src={movie.thumbnail}
                       alt="movie poster"
                     />
-                  </div>
+                  </NavLink>
                 ) : (
                   <div className={styles.movie_card_img}>
                     <div className={styles.camera_icon_box}>

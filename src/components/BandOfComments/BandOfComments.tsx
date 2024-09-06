@@ -23,7 +23,7 @@ export const BandOfComments = ({ movieID }: BandOfCommentsProps) => {
       <div className={styles.underline}></div>
       {!user ? (
         <h2 className={styles.section_title}>
-          Log in to leave commentaries and save favourite movies!
+          Log in to leave comments and save favourite movies!
         </h2>
       ) : (
         <h2 className={styles.section_title}>Share your thaughts:</h2>
