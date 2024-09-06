@@ -13,7 +13,7 @@
   .signup_box {
     position: relative;
     padding: 10px;
-    height: 280px;
+    min-height: 300px;
     width: 320px;
     font-size: 0.9rem;
     border-radius: 12px;
@@ -23,7 +23,7 @@
     @include flexBox(nowrap, column, center, center);
   }
   .signup_form {
-    height: 230px;
+    min-height: 250px;
     width: 280px;
     padding: 10px 0;
     color: $font_secondary_color;
@@ -45,19 +45,58 @@
       padding: 0 6px;
       @include flexBox(nowrap, row, start, center);
     }
-    .input_box {
+    .email_input_box {
       color: $font_secondary_color;
       width: 260px;
       margin-bottom: 10px;
-      .signup_input {
+      .email_input {
         width: 260px;
         height: 36px;
         padding: 0 6px;
         border: 1px solid;
         border-radius: 5px;
         outline: none;
-        color: $font_secondary_color;
+        font-weight: 500;
+        font-size: 0.9rem;
         letter-spacing: 1.5px;
+        color: $font_secondary_color;
+      }
+      ::placeholder {
+        color: $font_secondary_color;
+        font-style: italic;
+        opacity: 0.6;
+      }
+    }
+    .password_input_box {
+      position: relative;
+      color: $font_secondary_color;
+      width: 260px;
+      margin-bottom: 10px;
+      @include flexBox(nowrap, row, end, center);
+      .password_input {
+        width: 260px;
+        height: 36px;
+        padding: 0 6px;
+        border: 1px solid;
+        border-radius: 5px;
+        outline: none;
+        font-weight: 500;
+        font-size: 0.9rem;
+        letter-spacing: 1.5px;
+        color: $font_secondary_color;
+      }
+      ::placeholder {
+        color: $font_secondary_color;
+        font-style: italic;
+        opacity: 0.6;
+      }
+      .eye_icon {
+        position: absolute;
+        right: 6px;
+        z-index: 100;
+        cursor: pointer;
+        width: 20px;
+        height: 20px;
       }
     }
     .signup_button {
@@ -82,15 +121,17 @@
       }
     }
     .info_box {
-      height: 30px;
+      min-height: 60px;
       width: 280px;
+      text-align: center;
+      padding: 0 20px;
       @include flexBox(nowrap, row, center, center);
       .info_text {
         font-size: 0.9rem;
       }
       .login_link {
         color: $font_secondary_color;
-        font-weight: 500;
+        font-weight: 700;
       }
     }
   }

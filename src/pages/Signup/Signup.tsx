@@ -4,6 +4,7 @@ import { ChangeEvent, useContext, useState } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 import { SignupValueTypes, SignupErrorTypes } from '../../types/common_types';
 import { Loader } from '../../components/Loaders/Loader';
+import { LuEye, LuEyeOff } from 'react-icons/lu';
 
 export const Signup = () => {
   const {
@@ -20,6 +21,12 @@ export const Signup = () => {
     useState<boolean>(false);
   const [signupPasswordInputError, setSignupPasswordInputError] =
     useState<boolean>(false);
+  const [passVisibilityStatus, setPassVisibilityStatus] =
+    useState<boolean>(false);
+
+  const togglePassVisibilityStatusHandler = () => {
+    setPassVisibilityStatus(!passVisibilityStatus);
+  };
 
   const signupValues: SignupValueTypes = {
     email: signupEmailInputValue,
@@ -97,11 +104,12 @@ export const Signup = () => {
             </div>
           )}
 
-          <div className={styles.input_box}>
+          <div className={styles.email_input_box}>
             <input
-              className={styles.signup_input}
+              className={styles.email_input}
               onChange={catchSignupEmailValueHandler}
               value={signupEmailInputValue}
+              placeholder="Email..."
               type="email"
             />
           </div>
@@ -115,25 +123,37 @@ export const Signup = () => {
               <label htmlFor="password">Password</label>
             </div>
           )}
-          <div className={styles.input_box}>
+          <div className={styles.password_input_box}>
             <input
-              className={styles.signup_input}
+              className={styles.password_input}
               onChange={catchSignupPasswordValueHandler}
               value={signupPasswordInputValue}
-              type="password"
+              type={passVisibilityStatus ? 'text' : 'password'}
+              placeholder="Password..."
             />
+            {passVisibilityStatus ? (
+              <LuEyeOff
+                className={styles.eye_icon}
+                onClick={togglePassVisibilityStatusHandler}
+              />
+            ) : (
+              <LuEye
+                className={styles.eye_icon}
+                onClick={togglePassVisibilityStatusHandler}
+              />
+            )}
           </div>
           <div
             className={styles.signup_button}
             onClick={submitSignupValuesHandler}
           >
-            Sign up
+            signup
           </div>
           <div className={styles.info_box}>
             <span className={styles.info_text}>
               Already have an account?{' '}
               <NavLink to={'/login'} className={styles.login_link}>
-                Log in
+                login
               </NavLink>
             </span>
           </div>
