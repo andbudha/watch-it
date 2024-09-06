@@ -46,6 +46,11 @@ export const Login = () => {
 
   const loginAsGuestHandler = () => {
     console.log('Loggedin as guest!');
+    const guestLoginValues = {
+      email: import.meta.env.VITE_GUEST_EMAIL,
+      password: import.meta.env.VITE_GUEST_PASS,
+    };
+    logInUser(guestLoginValues);
   };
   if (user) {
     return <Navigate to={'/'} />;
