@@ -125,7 +125,7 @@ export const Login = () => {
               <span>
                 {' '}
                 <NavLink to={'/signup'} className={styles.signup_link}>
-                  Sign up
+                  signup
                 </NavLink>
               </span>
             </p>
