@@ -73,12 +73,12 @@ export const MyList = () => {
                     <div className={styles.year}>{movie.year}</div>
                   </h4>
                 </div>
-                <div className={styles.list_item_icon_box}>
+                <div
+                  className={styles.list_item_icon_box}
+                  onClick={() => removeMovieHandler(movie)}
+                >
                   {isLoading && <MiniLoader />}
-                  <AiFillDelete
-                    className={styles.list_item_icon}
-                    onClick={() => removeMovieHandler(movie)}
-                  />
+                  <AiFillDelete className={styles.list_item_icon} />
                 </div>
               </div>
             );
