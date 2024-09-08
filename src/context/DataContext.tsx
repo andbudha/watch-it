@@ -186,6 +186,7 @@ export const DataProvider = ({ children }: DataProviderProps) => {
       await updateDoc(movieListRef, {
         movieList: arrayRemove(movie),
       });
+      fetchMovies();
     } catch (error) {
     } finally {
       setIsLoading(false);
