@@ -82,7 +82,9 @@
             rgba(0, 0, 0, 0.06) 0px 0px 0px 0px;
           @include flexBox(nowrap, row, center, center);
           .edit_icon,
-          .delete_icon {
+          .delete_icon,
+          .save_icon,
+          .discard_icon {
             height: 24px;
             width: 24px;
           }
