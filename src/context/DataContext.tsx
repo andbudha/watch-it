@@ -34,6 +34,10 @@ type DataContextType = {
   addMovieToMyList: (newMovie: MovieToAddType) => Promise<void>;
   removeMovieFromMyList: (movie: MovieToAddType) => Promise<void>;
   addCommentary: (movieID: string, textAreaValue: string) => Promise<void>;
+  editComment: (
+    commentID: string,
+    updatedComment: CommentaryType
+  ) => Promise<void>;
   removeComment: (commentID: string) => Promise<void>;
   getCommentaries: () => Promise<void>;
 };
@@ -55,6 +59,7 @@ const initialDataContextState = {
   addMovieToMyList: () => Promise.resolve(),
   removeMovieFromMyList: () => Promise.resolve(),
   addCommentary: () => Promise.resolve(),
+  editComment: () => Promise.resolve(),
   removeComment: () => Promise.resolve(),
   getCommentaries: () => Promise.resolve(),
 } as DataContextType;
@@ -150,6 +155,18 @@ export const DataProvider = ({ children }: DataProviderProps) => {
     }
   };
 
+  const editComment = async (
+    commentID: string,
+    updatedComment: CommentaryType
+  ) => {
+    const docToUpdate = doc(dataBase, 'commentaries', commentID);
+    try {
+      await updateDoc(docToUpdate, updatedComment);
+      getCommentaries();
+    } catch (error) {
+      console.log('Edit comment error:', error);
+    }
+  };
   const removeComment = async (commentID: string) => {
     setIsLoading(true);
     const docToRemove = doc(dataBase, 'commentaries', commentID);
@@ -187,6 +204,7 @@ export const DataProvider = ({ children }: DataProviderProps) => {
         addMovieToMyList,
         removeMovieFromMyList,
         addCommentary,
+        editComment,
         removeComment,
         commentaries,
         getCommentaries,

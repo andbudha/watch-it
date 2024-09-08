@@ -14,7 +14,7 @@ type CommentaryProps = {
 };
 export const Commentary = ({ commentary }: CommentaryProps) => {
   const { user, isLoading } = useContext(AuthContext);
-  const { removeComment } = useContext(DataContext);
+  const { removeComment, editComment } = useContext(DataContext);
   const [editCommentStatus, setEditCommentStatus] = useState<boolean>(false);
   const [editedCommentValue, setEditedCommentValue] = useState<string>('');
   const convertedTime = commentary.timestamp.toDate().toLocaleTimeString();
@@ -36,8 +36,8 @@ export const Commentary = ({ commentary }: CommentaryProps) => {
   };
 
   const saveEditedCommentHandler = (commentID: string) => {
-    console.log(editedCommentValue);
-    console.log(commentID);
+    const updatedComment = { ...commentary, commentary: editedCommentValue };
+    editComment(commentID, updatedComment);
     setEditCommentStatus(false);
   };
   const discardCommentChangesHandler = () => {
