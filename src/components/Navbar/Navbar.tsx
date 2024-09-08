@@ -95,9 +95,11 @@ export const Navbar = () => {
         </div>
       </div>
       <div className={styles.greeting_main_box}>
-        <h4 className={styles.greeting}>
-          Hello, <span className={styles.user_email}>{user?.email}</span>
-        </h4>
+        {user && (
+          <h4 className={styles.greeting}>
+            Hello, <span className={styles.user_email}>{user?.email}</span>
+          </h4>
+        )}
       </div>
     </div>
   );
