@@ -7,6 +7,7 @@ import {
   arrayRemove,
   arrayUnion,
   collection,
+  deleteDoc,
   doc,
   getDocs,
   updateDoc,
@@ -33,6 +34,7 @@ type DataContextType = {
   addMovieToMyList: (newMovie: MovieToAddType) => Promise<void>;
   removeMovieFromMyList: (movie: MovieToAddType) => Promise<void>;
   addCommentary: (movieID: string, textAreaValue: string) => Promise<void>;
+  removeComment: (commentID: string) => Promise<void>;
   getCommentaries: () => Promise<void>;
 };
 type CollectionUser = {
@@ -53,6 +55,7 @@ const initialDataContextState = {
   addMovieToMyList: () => Promise.resolve(),
   removeMovieFromMyList: () => Promise.resolve(),
   addCommentary: () => Promise.resolve(),
+  removeComment: () => Promise.resolve(),
   getCommentaries: () => Promise.resolve(),
 } as DataContextType;
 
@@ -147,6 +150,19 @@ export const DataProvider = ({ children }: DataProviderProps) => {
     }
   };
 
+  const removeComment = async (commentID: string) => {
+    setIsLoading(true);
+    const docToRemove = doc(dataBase, 'commentaries', commentID);
+    try {
+      const response = await deleteDoc(docToRemove);
+      console.log(response);
+      getCommentaries();
+    } catch (error) {
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   const removeMovieFromMyList = async (movie: MovieToAddType) => {
     setIsLoading(true);
     try {
@@ -171,6 +187,7 @@ export const DataProvider = ({ children }: DataProviderProps) => {
         addMovieToMyList,
         removeMovieFromMyList,
         addCommentary,
+        removeComment,
         commentaries,
         getCommentaries,
       }}
