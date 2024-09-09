@@ -9,6 +9,10 @@ export const toastError = (message: string) =>
       padding: '16px',
       color: '#ED2B2A',
       background: '#fff',
+      fontSize: '16px',
+      textAlign: 'center',
+      letterSpacing: '1px',
+      fontWeight: '500',
     },
     iconTheme: {
       primary: '#ED2B2A',
