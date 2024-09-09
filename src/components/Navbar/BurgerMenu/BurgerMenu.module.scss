@@ -4,12 +4,13 @@
 .burger_menu_main_box {
   height: 0;
   width: 100%;
-  position: absolute;
+  position: fixed;
   z-index: 10;
   background-color: none;
   margin: 0 auto;
   @include flexBox(nowrap, row, center, start);
   .dropped_burger_menu_box {
+    border: 1px solid $font_secondary_color;
     background-color: #e3dffd;
     box-shadow: $shadow_color 0px 2px 20px 0px,
       rgba(0, 0, 0, 0.06) 0px 0px 0px 0px;
@@ -91,6 +92,7 @@
     }
   }
   .hidden_burger_menu_box {
+    border: 1px solid $font_secondary_color;
     background-color: #e3dffd;
     box-shadow: $shadow_color 0px 2px 20px 0px,
       rgba(0, 0, 0, 0.06) 0px 0px 0px 0px;
@@ -140,19 +142,20 @@
     }
   }
   .burger_button_box {
+    border: 1px solid $font_secondary_color;
+    border-radius: 5px;
     height: 40px;
-    width: 50px;
+    width: 40px;
     position: absolute;
     z-index: 20;
     top: 28px;
     right: 14px;
     @include flexBox(nowrap, row, center, center);
     .burger_icon_button {
-      height: 34px;
-      width: 34px;
-      font-weight: 500;
+      height: 28px;
+      width: 28px;
       transition: 1s;
-      color: $font_secondary_color;
+      color: $font_primary_color;
       cursor: pointer;
     }
     @media screen and (min-width: 521px) {
