@@ -10,13 +10,8 @@ import { BandOfComments } from '../../components/BandOfComments/BandOfComments';
 export const MovieDetails = () => {
   const { movieID } = useParams();
   const { user } = useContext(AuthContext);
-  const {
-    addMovieToMyList,
-    getUsers,
-    movies,
-    usersCollection,
-    getCommentaries,
-  } = useContext(DataContext);
+  const { addMovieToMyList, movies, usersCollection, getCommentaries } =
+    useContext(DataContext);
 
   const movie = movies?.find((movie) => movie.id === movieID);
   const castList = movie?.cast.join(', ');
@@ -41,7 +36,6 @@ export const MovieDetails = () => {
       ...movieToAdd,
       thumbnail: movie?.thumbnail ? movie.thumbnail : '',
     });
-    getUsers();
   };
 
   useEffect(() => {

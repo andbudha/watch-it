@@ -120,9 +120,22 @@ export const DataProvider = ({ children }: DataProviderProps) => {
       await updateDoc(movieListRef, {
         movieList: arrayUnion(newMovie),
       });
+      getUsers();
     } catch (error) {}
   };
 
+  const removeMovieFromMyList = async (movie: MovieToAddType) => {
+    setIsLoading(true);
+    try {
+      await updateDoc(movieListRef, {
+        movieList: arrayRemove(movie),
+      });
+      getUsers();
+    } catch (error) {
+    } finally {
+      setIsLoading(false);
+    }
+  };
   const getCommentaries = async () => {
     const commentariesList = collection(dataBase, 'commentaries');
     try {
@@ -174,19 +187,6 @@ export const DataProvider = ({ children }: DataProviderProps) => {
       const response = await deleteDoc(docToRemove);
       console.log(response);
       getCommentaries();
-    } catch (error) {
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  const removeMovieFromMyList = async (movie: MovieToAddType) => {
-    setIsLoading(true);
-    try {
-      await updateDoc(movieListRef, {
-        movieList: arrayRemove(movie),
-      });
-      fetchMovies();
     } catch (error) {
     } finally {
       setIsLoading(false);
