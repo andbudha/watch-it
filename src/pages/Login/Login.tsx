@@ -2,7 +2,7 @@ import { useFormik } from 'formik';
 import styles from './Login.module.scss';
 import { NavLink, Navigate } from 'react-router-dom';
 import { LoginErrorValues, LoginValues } from '../../types/common_types';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 import { LuEye, LuEyeOff } from 'react-icons/lu';
 import { Loader } from '../../components/Loaders/Loader';
@@ -12,6 +12,9 @@ export const Login = () => {
   const [passVisibilityStatus, setPassVisibilityStatus] =
     useState<boolean>(false);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const togglePassVisibilityStatusHandler = () => {
     setPassVisibilityStatus(!passVisibilityStatus);
   };

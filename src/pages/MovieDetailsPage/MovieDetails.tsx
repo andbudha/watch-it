@@ -40,6 +40,7 @@ export const MovieDetails = () => {
 
   useEffect(() => {
     getCommentaries();
+    window.scrollTo(0, 0);
   }, []);
   return (
     <div className={styles.movie_details_main_box}>

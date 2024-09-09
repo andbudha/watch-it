@@ -1,7 +1,11 @@
+import { useEffect } from 'react';
 import styles from './PageNotFound.module.scss';
 import { MdOutlineReportGmailerrorred } from 'react-icons/md';
 
 export const PageNotFound = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div className={styles.page_not_found_main_box}>
       <div className={styles.page_not_found_box}>

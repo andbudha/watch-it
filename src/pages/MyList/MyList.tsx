@@ -30,6 +30,7 @@ export const MyList = () => {
 
   useEffect(() => {
     getUsers();
+    window.scrollTo(0, 0);
   }, []);
   if (!user) {
     return <Navigate to={'/'} />;
