@@ -15,6 +15,7 @@ import {
 import axios, { AxiosError } from 'axios';
 import { AuthContext } from './AuthContext';
 import { toastError } from '../assets/utils/failedToast';
+import { successfulToast } from '../assets/utils/successfulToast';
 
 type MovieToAddType = {
   title?: string;
@@ -94,8 +95,6 @@ export const DataProvider = ({ children }: DataProviderProps) => {
     } catch (error) {
       if (error instanceof AxiosError) {
         toastError(error.message);
-      } else {
-        console.log(error);
       }
     } finally {
       setFetchingMoviesStatus(false);
@@ -113,9 +112,7 @@ export const DataProvider = ({ children }: DataProviderProps) => {
       if (data) {
         setUsersCollection(data);
       }
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
 
   let movieListRef: DocumentReference<unknown, {}>;
@@ -129,6 +126,7 @@ export const DataProvider = ({ children }: DataProviderProps) => {
         movieList: arrayUnion(newMovie),
       });
       getUsers();
+      successfulToast(`'${newMovie.title}' - added to your list!`);
     } catch (error) {}
   };
 
@@ -139,6 +137,7 @@ export const DataProvider = ({ children }: DataProviderProps) => {
         movieList: arrayRemove(movie),
       });
       getUsers();
+      successfulToast(`'${movie.title}' - removed from your list!`);
     } catch (error) {
     } finally {
       setIsLoading(false);
@@ -155,9 +154,7 @@ export const DataProvider = ({ children }: DataProviderProps) => {
       if (data) {
         setCommentaries(data);
       }
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
 
   const addCommentary = async (movieID: string, textAreaValue: string) => {
@@ -171,8 +168,9 @@ export const DataProvider = ({ children }: DataProviderProps) => {
     };
     try {
       await addDoc(collection(dataBase, 'commentaries'), newCommentary);
+      successfulToast(`Comment successfully added!`);
     } catch (error) {
-      console.log(error);
+      toastError('Comment adding failed. Try again later, please!');
     }
   };
 
@@ -184,18 +182,20 @@ export const DataProvider = ({ children }: DataProviderProps) => {
     try {
       await updateDoc(docToUpdate, updatedComment);
       getCommentaries();
+      successfulToast(`Comment successfully edited!`);
     } catch (error) {
-      console.log('Edit comment error:', error);
+      toastError('Comment editing failed. Try again later, please!');
     }
   };
   const removeComment = async (commentID: string) => {
     setIsLoading(true);
     const docToRemove = doc(dataBase, 'commentaries', commentID);
     try {
-      const response = await deleteDoc(docToRemove);
-      console.log(response);
+      await deleteDoc(docToRemove);
       getCommentaries();
+      successfulToast(`Comment successfully deleted!`);
     } catch (error) {
+      toastError('Comment deleting failed. Try again later, please!');
     } finally {
       setIsLoading(false);
     }
