@@ -2,7 +2,7 @@
 @import '../../assets/sass/mixins.scss';
 
 .signup_main_box {
-  min-height: 82vh;
+  min-height: calc(100vh - 226px);
   width: 100%;
   border-radius: 12px;
   background-color: $second_background_color;
@@ -13,6 +13,7 @@
   .signup_box {
     position: relative;
     padding: 10px;
+    margin: 20px 0;
     min-height: 300px;
     width: 320px;
     font-size: 0.9rem;
