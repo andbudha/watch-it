@@ -81,7 +81,6 @@ export const DataProvider = ({ children }: DataProviderProps) => {
   const [searchInputValue, setSearchInputValue] = useState<string>('');
   const [fetchingMoviesStatus, setFetchingMoviesStatus] =
     useState<boolean>(false);
-  console.log(fetchingMoviesStatus);
 
   const fetchMovies = async () => {
     setFetchingMoviesStatus(true);

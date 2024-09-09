@@ -77,9 +77,8 @@ export const MovieDetails = () => {
             {!!isInTheList ? 'already added' : 'add to my list'}
           </button>
           <NavLink className={styles.home_button} to={'/'}>
-            {' '}
             <IoChevronBack className={styles.chevron_icon} />
-            back
+            main
           </NavLink>
         </div>
         <div className={styles.movie_info_box}>
