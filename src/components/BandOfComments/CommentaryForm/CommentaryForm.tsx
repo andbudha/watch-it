@@ -4,20 +4,28 @@ import { FiSend } from 'react-icons/fi';
 import { useParams } from 'react-router-dom';
 import { DataContext } from '../../../context/DataContext';
 import { toastError } from '../../../assets/utils/failedToast';
+import { AuthContext } from '../../../context/AuthContext';
 
 export const CommentaryForm = () => {
+  const { user } = useContext(AuthContext);
   const { addCommentary, getCommentaries } = useContext(DataContext);
   const [textAreaValue, setTextAreaValue] = useState<string>('');
   const { movieID } = useParams();
 
   const catchTextAreaValueHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    setTextAreaValue(e.currentTarget.value);
+    if (!user && e.currentTarget.value.length === 1) {
+      toastError('Log in first, please!');
+    } else {
+      setTextAreaValue(e.currentTarget.value);
+    }
   };
 
   const addCommentHandler = () => {
-    if (textAreaValue.trim() === '') {
-      toastError('Please, first write a commentary!');
-    } else if (movieID && textAreaValue.trim() !== '') {
+    if (!user) {
+      toastError('Log in first, please!');
+    } else if (user && textAreaValue.trim() === '') {
+      toastError('Write a comment first, please!');
+    } else if (user && movieID && textAreaValue.trim() !== '') {
       addCommentary(movieID, textAreaValue.trim());
       getCommentaries();
     }
@@ -26,13 +34,12 @@ export const CommentaryForm = () => {
   return (
     <div className={styles.commentary_main_box}>
       <div className={styles.common_box}>
-        {' '}
         <div className={styles.text_area_box}>
           <textarea
             value={textAreaValue}
             className={styles.text_area}
             onChange={catchTextAreaValueHandler}
-            placeholder={'Type in your commentary here...'}
+            placeholder={'Leave a comment...'}
           ></textarea>
         </div>
         <div

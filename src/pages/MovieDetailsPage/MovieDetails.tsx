@@ -6,6 +6,7 @@ import { DataContext } from '../../context/DataContext';
 import { IoChevronBack } from 'react-icons/io5';
 import { BiCameraMovie } from 'react-icons/bi';
 import { BandOfComments } from '../../components/BandOfComments/BandOfComments';
+import { toastError } from '../../assets/utils/failedToast';
 
 export const MovieDetails = () => {
   const { movieID } = useParams();
@@ -32,10 +33,14 @@ export const MovieDetails = () => {
       thumbnail: movie?.thumbnail,
       id: movie?.id,
     };
-    addMovieToMyList({
-      ...movieToAdd,
-      thumbnail: movie?.thumbnail ? movie.thumbnail : '',
-    });
+    if (!user) {
+      toastError('Log in first, please!');
+    } else {
+      addMovieToMyList({
+        ...movieToAdd,
+        thumbnail: movie?.thumbnail ? movie.thumbnail : '',
+      });
+    }
   };
 
   useEffect(() => {
@@ -63,15 +68,14 @@ export const MovieDetails = () => {
               </div>
             )}
           </div>
-          {!!user && (
-            <button
-              disabled={!!isInTheList}
-              className={styles.add_movie_button}
-              onClick={addMovieToMyListHandler}
-            >
-              {!!isInTheList ? 'already added' : 'add to my lsit'}
-            </button>
-          )}
+
+          <button
+            disabled={!!isInTheList}
+            className={styles.add_movie_button}
+            onClick={addMovieToMyListHandler}
+          >
+            {!!isInTheList ? 'already added' : 'add to my list'}
+          </button>
           <NavLink className={styles.home_button} to={'/'}>
             {' '}
             <IoChevronBack className={styles.chevron_icon} />
