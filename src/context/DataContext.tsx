@@ -40,6 +40,7 @@ type DataContextType = {
   ) => Promise<void>;
   removeComment: (commentID: string) => Promise<void>;
   getCommentaries: () => Promise<void>;
+  fetchingMoviesStatus: boolean;
 };
 type CollectionUser = {
   email: string;
@@ -62,6 +63,7 @@ const initialDataContextState = {
   editComment: () => Promise.resolve(),
   removeComment: () => Promise.resolve(),
   getCommentaries: () => Promise.resolve(),
+  fetchingMoviesStatus: false,
 } as DataContextType;
 
 export const DataContext = createContext(initialDataContextState);
@@ -76,8 +78,12 @@ export const DataProvider = ({ children }: DataProviderProps) => {
     null
   );
   const [searchInputValue, setSearchInputValue] = useState<string>('');
+  const [fetchingMoviesStatus, setFetchingMoviesStatus] =
+    useState<boolean>(false);
+  console.log(fetchingMoviesStatus);
 
   const fetchMovies = async () => {
+    setFetchingMoviesStatus(true);
     try {
       const response = await axios.get<Movies>(
         'https://5b81e3264853b358.mokky.dev/mixedmovies'
@@ -91,6 +97,8 @@ export const DataProvider = ({ children }: DataProviderProps) => {
       } else {
         console.log(error);
       }
+    } finally {
+      setFetchingMoviesStatus(false);
     }
   };
 
@@ -209,6 +217,7 @@ export const DataProvider = ({ children }: DataProviderProps) => {
         removeComment,
         commentaries,
         getCommentaries,
+        fetchingMoviesStatus,
       }}
     >
       {children}
